@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="h-screen flex ">
-      <div className="w-2/5 h-full flex flex-col  justify-evenly py-10 gap-5 bg-primary">
+      <div className="w-2/5 h-full flex flex-col border-r-primary border-r  justify-evenly py-10 gap-5 bg-primary">
         <div className="px-10">
           <AuthHeader />
         </div>
