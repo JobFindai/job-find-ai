@@ -2,6 +2,7 @@ import { Slide } from "@/components/animation/Slide";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { NotebookPen } from "lucide-react";
+import OnboardHeader from "./OnboardHeader";
 
 export default function ResumeInsight({
   step,
@@ -15,16 +16,12 @@ export default function ResumeInsight({
       direction="right"
       className=" flex flex-col items-center gap-6 min-w-2/4 min-h-96"
     >
-      <div className="flex flex-col items-center gap-3">
-        <span className="text-xs mb-2">
-          Step <b>{step}</b> of 4 (Cont.)
-        </span>
-        <h2 className="text-2xl font-semibold">Resume Insight</h2>
-        <p className="text-sm">
-          Here&apos;s how your resume performs against industry expectations and
-          relevant job roles
-        </p>
-      </div>
+      <OnboardHeader
+        step={step}
+        title="Resume Insight"
+        description="  Here's how your resume performs against industry expectations and
+          relevant job roles"
+      />
       <div className="flex-1  w-3/5 grid-cols-2 grid gap-5 grid-rows-2">
         <ResumeScore />
         <OpportunitiesImprove />
@@ -35,12 +32,15 @@ export default function ResumeInsight({
         <Button className="text-muted-foreground" variant="ghost">
           Change resume
         </Button>
-        <Button className="h-12 w-1/4">Set experience level</Button>
+        <Button onClick={() => goStep(3)} className="h-12 w-1/4">
+          Set experience level
+        </Button>
       </div>
     </Slide>
   );
 }
 
+// Resume Score Component
 function ResumeScore() {
   return (
     <div className="bg-white rounded-md flex flex-col p-5 leading-normal gap-3">
@@ -54,6 +54,7 @@ function ResumeScore() {
   );
 }
 
+// Areas to Improve Component
 const improvePoints = [
   "Add measurable achievements",
   "Clarify leadership scope",
@@ -76,7 +77,7 @@ function OpportunitiesImprove() {
   );
 }
 
-// Working Well Component
+// Strong Areas Component
 const working = [
   "Clear career progression",
   "Relevant technical skills",
@@ -99,6 +100,7 @@ function WorkingWell() {
   );
 }
 
+// Role Match Component
 const roleMatches = ["UX Designer", "UX Researcher", "Interaction Designer"];
 
 function RoleMatch() {

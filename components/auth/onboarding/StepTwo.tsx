@@ -4,6 +4,7 @@ import { CloudUpload, Linkedin } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ResumeInsight from "./ResumeInsight";
+import OnboardHeader from "./OnboardHeader";
 
 export default function StepTwo({
   step,
@@ -23,16 +24,11 @@ export default function StepTwo({
           direction="right"
           className=" flex flex-col gap-10 min-w-2/4 min-h-3/4"
         >
-          <div className="flex text-center items-center flex-col gap-3">
-            <span className="text-xs mb-3">
-              Step <b>{step}</b> of 4
-            </span>
-            <h2 className="font-semibold text-2xl">Upload your cv/resume</h2>
-            <p className="text-sm">
-              We will analyze your resume to generate insights and tailored job
-              matches
-            </p>
-          </div>
+          <OnboardHeader
+            step={step}
+            title="Upload your cv/resume"
+            description="We will analyze your resume to generate insights and tailored job matches"
+          />
           <div className="flex flex-col items-center gap-7">
             <div className="flex flex-col gap-4 w-full">
               <span>Upload CV/Resume</span>

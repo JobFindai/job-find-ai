@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ArrowLeft } from "lucide-react";
+import OnboardHeader from "./OnboardHeader";
 
 const usersCategory = [
   {
@@ -30,15 +31,12 @@ export default function StepOne({
   return (
     <Slide direction="right" className=" flex flex-col gap-5  min-w-2/4 h-3/4">
       <div className="px-10 flex flex-col text-center gap-10 ">
-        <div className="flex flex-col gap-2">
-          <span className="text-xs">Step {step} of 4</span>
-          <h2 className="text-2xl font-medium">
-            Where are you in your career?
-          </h2>
-          <p className="text-xs">
-            This helps us personalize your job matches and coaching experience
-          </p>
-        </div>
+        <OnboardHeader
+          step={step}
+          title="Where are you in your career?"
+          description=" This helps us personalize your job matches and coaching experience"
+        />
+
         <RadioGroup defaultValue="Student">
           <div className="flex flex-col gap-7">
             {usersCategory.map((user) => (
