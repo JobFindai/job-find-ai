@@ -34,7 +34,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   /* --color-primary: var(--primary); */
-  --color-primary: rgba(70, 85, 178, 1);
+  /* --color-primary: #4655b2; */
+  --color-primary: #0ea5a4;
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
