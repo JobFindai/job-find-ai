@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <div className="absolute top-7 h-14 min-w-20 left-12">
+    <div className=" py-10 pb-20 w-full">
+      <div className="absolute top-10 lg:top-7 lg:h-14 h-12 min-w-20 lg:left-12 left-5">
         <Image
           className="object-cover size-full"
           src="/logo.png"
@@ -13,6 +13,6 @@ export default function layout({ children }: { children: React.ReactNode }) {
         />
       </div>
       {children}
-    </>
+    </div>
   );
 }

@@ -17,16 +17,18 @@ export default function AuthLayout({
   );
 
   return (
-    <div className="min-h-screen flex py-10 pb-20 bg-gray-100">
+    <div className=" flex min-h-screen bg-gray-100">
       {!shouldHideLayout && (
-        <div className="w-2/5 h-full flex flex-col border-r-primary border-r  justify-evenly py-10 gap-5 bg-primary">
+        <div className="w-2/5 min-h-full flex flex-col border-r-primary border-r  justify-evenly py-10 gap-5 bg-primary">
           <div className="px-10">
             <AuthHeader />
           </div>
           <AuthTestimoniesSlider />
         </div>
       )}
-      <div className=" w-full flex justify-center items-center">{children}</div>
+      <div className=" w-full flex justify-center  items-center">
+        {children}
+      </div>
     </div>
   );
 }

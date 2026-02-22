@@ -37,10 +37,10 @@ export default function StepThree({
       <div className=" flex-1 flex flex-col gap-10 w-full">
         <RadioGroup
           defaultValue="Entry Level"
-          className="h-2/4 flex flex-col gap-4"
+          className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Select your current level</span>
-          <div className="grid grid-cols-2 grid-rows-2 gap-7">
+          <div className="grid grid-cols-2 grid-rows-2 gap-4 lg:gap-7">
             {currentLevel.map((item) => (
               <div
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
@@ -56,10 +56,10 @@ export default function StepThree({
         </RadioGroup>
         <RadioGroup
           defaultValue="Entry Level"
-          className="h-2/4 flex flex-col gap-4"
+          className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Target level you want to apply for</span>
-          <div className="grid grid-cols-2 grid-rows-2 gap-7">
+          <div className="grid grid-cols-2 grid-rows-2 lg:gap-7 gap-4">
             {targetLevel.map((item) => (
               <div
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
@@ -81,7 +81,7 @@ export default function StepThree({
           >
             Go back
           </Button>
-          <Button onClick={() => goStep(4)} className="h-12 w-1/4">
+          <Button onClick={() => goStep(4)} className="h-12 lg:w-1/4">
             Explore job matches
           </Button>
         </div>

@@ -14,7 +14,7 @@ export default function ResumeInsight({
   return (
     <Slide
       direction="right"
-      className=" flex flex-col items-center gap-6 min-w-2/4 min-h-96"
+      className=" flex flex-col items-center pt-20 lg:p-0 px-5 lg:gap-6 gap-8 min-w-2/4 min-h-96"
     >
       <OnboardHeader
         step={step}
@@ -22,17 +22,17 @@ export default function ResumeInsight({
         description="  Here's how your resume performs against industry expectations and
           relevant job roles"
       />
-      <div className="flex-1  w-3/5 grid-cols-2 grid gap-5 grid-rows-2">
+      <div className="flex-1  lg:w-3/5 grid-cols-2 lg:grid flex flex-col gap-5 grid-rows-2">
         <ResumeScore />
         <OpportunitiesImprove />
         <WorkingWell />
         <RoleMatch />
       </div>
-      <div className="flex justify-between items-center text-sm w-3/5">
+      <div className="flex justify-between items-center text-sm w-full lg:w-3/5">
         <Button className="text-muted-foreground" variant="ghost">
           Change resume
         </Button>
-        <Button onClick={() => goStep(3)} className="h-12 w-1/4">
+        <Button onClick={() => goStep(3)} className="h-12 lg:w-1/4">
           Set experience level
         </Button>
       </div>
@@ -43,7 +43,7 @@ export default function ResumeInsight({
 // Resume Score Component
 function ResumeScore() {
   return (
-    <div className="bg-white rounded-md flex flex-col p-5 leading-normal gap-3">
+    <div className="bg-white shadow-lg lg:shadow-none rounded-md flex flex-col p-5 leading-normal gap-3">
       <div className="bg-orange-400 size-16 rounded-full"></div>
       <h3 className="font-bold text- text-xl">Resume Score 75/100</h3>
       <p className="text-xs">
@@ -62,7 +62,7 @@ const improvePoints = [
 ];
 function OpportunitiesImprove() {
   return (
-    <div className="p-5 flex flex-col gap-3 justify-evenly rounded-md bg-white">
+    <div className="p-5 flex shadow-lg lg:shadow-none flex-col gap-3 justify-evenly rounded-md bg-white">
       <h3 className="text-lg font-semibold">Opportunities to improve</h3>
       {improvePoints.map((points) => (
         <div
@@ -85,7 +85,7 @@ const working = [
 ];
 function WorkingWell() {
   return (
-    <div className="p-5 flex flex-col gap-3 justify-evenly rounded-md bg-white">
+    <div className="p-5 flex flex-col shadow-lg lg:shadow-none gap-3 justify-evenly rounded-md bg-white">
       <h3 className="text-lg font-semibold">What is working well</h3>
       {working.map((points) => (
         <div
@@ -105,9 +105,9 @@ const roleMatches = ["UX Designer", "UX Researcher", "Interaction Designer"];
 
 function RoleMatch() {
   return (
-    <div className="bg-white rounded-lg gap-1.5 flex flex-col p-5">
+    <div className="bg-white shadow-lg lg:shadow-none rounded-lg lg:gap-1.5 gap-3 flex flex-col p-5">
       <h3 className="text-lg font-semibold">Role match preview</h3>
-      <div className="flex-1 flex flex-col justify-between w-3/4">
+      <div className="flex-1 flex flex-col justify-between gap-3 lg:gap-0 lg:w-3/4">
         {roleMatches.map((role) => (
           <div key={role} className=" flex flex-col gap-2">
             <div className="flex justify-between text-xs items-center">

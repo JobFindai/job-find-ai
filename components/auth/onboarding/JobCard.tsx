@@ -13,7 +13,7 @@ import JobDescriptionDialog from "./JobDescriptionDialog";
 
 export default function JobCard() {
   return (
-    <Card className="gap-5 shadow-none">
+    <Card className="gap-5 lg:shadow-none shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl font-semibold flex items-center gap-2">
           <div className="size-9">
@@ -47,7 +47,7 @@ export default function JobCard() {
           We are looking for a junior product designer that can take on design
           tasks. The suitable candidate will work with senior designers on...
         </p>
-        <div className="flex text-xs items-center text-blue-600 bg-blue-50 w-2/5 py-1.5 justify-center rounded-sm gap-2">
+        <div className="flex text-xs items-center text-blue-600 bg-blue-50 lg:w-2/5 w-2/4 py-1.5 justify-center rounded-sm gap-2">
           <span>
             Fitscore: <b className="text-sm"> 68% Match</b>
           </span>{" "}

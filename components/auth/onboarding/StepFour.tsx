@@ -13,22 +13,22 @@ export default function StepFour({
   return (
     <Slide
       direction="right"
-      className=" flex flex-col items-center gap-9 min-w-3/5 min-h-96"
+      className=" flex flex-col items-center lg:gap-9 gap-5 px-4 pt-16 lg:p-0 min-w-3/5 min-h-96"
     >
       <OnboardHeader
         step={step}
-        title="Top job matches"
+        title="Top Job matches"
         description="Explore top jobs that fit your resume and experience level"
       />
-      <div className=" flex-1 grid grid-cols-2 gap-7 w-3/5 grid-rows-2">
+      <div className=" flex-1 lg:grid grid-cols-2 flex flex-col gap-7 lg:w-3/5 grid-rows-2">
         <JobCard />
         <JobCard />
         <JobCard />
         <JobCard />
       </div>
-      <div className="flex justify-between items-center w-3/5 text-sm">
+      <div className="flex justify-between items-center w-full lg:w-3/5 lg:text-sm">
         <Button
-          onClick={() => goStep(2)}
+          onClick={() => goStep(3)}
           className="text-muted-foreground"
           variant="ghost"
         >

@@ -22,7 +22,7 @@ export default function StepTwo({
       ) : (
         <Slide
           direction="right"
-          className=" flex flex-col gap-10 min-w-2/4 min-h-3/4"
+          className=" flex flex-col p-5 gap-10 min-w-2/4 min-h-3/4"
         >
           <OnboardHeader
             step={step}
@@ -68,7 +68,7 @@ export default function StepTwo({
               </Button>
               <Button
                 onClick={() => setShowResumeInsight(true)}
-                className="h-11 w-1/4"
+                className="h-11 lg:w-1/4"
               >
                 Analyze resume
               </Button>

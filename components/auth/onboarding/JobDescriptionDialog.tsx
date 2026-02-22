@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -23,7 +22,7 @@ export default function JobDescriptionDialog({ btnText }: { btnText: string }) {
       <DialogTrigger asChild>
         <Button className="w-full h-10">{btnText}</Button>
       </DialogTrigger>
-      <DialogContent className=" size-5/6 p-3">
+      <DialogContent className=" lg:size-5/6 p-3">
         <div className="border h-full p-3 rounded-md flex flex-col gap-2.5">
           <DialogHeader className="gap-4">
             <DialogTitle className="text-xl font-semibold flex items-center gap-2">
@@ -63,7 +62,7 @@ export default function JobDescriptionDialog({ btnText }: { btnText: string }) {
                 experiences. Your journey with us is an opportunity to drive
                 innovation and make a significant impact.
               </p>
-              <div className="flex text-xs items-center text-blue-600 bg-blue-50 w-2/5 py-1.5 justify-center rounded-sm gap-2">
+              <div className="flex text-xs items-center text-blue-600 bg-blue-50 lg:w-2/5 w-2/4 py-1.5 justify-center rounded-sm gap-2">
                 <span>
                   Fitscore: <b className="text-sm"> 68% Match</b>
                 </span>{" "}
@@ -104,9 +103,9 @@ export default function JobDescriptionDialog({ btnText }: { btnText: string }) {
             >
               Skip & Apply
             </Button>
-            <DialogClose>
-              <CoverLetterDialog />
-            </DialogClose>
+            {/* <DialogClose> */}
+            <CoverLetterDialog />
+            {/* </DialogClose> */}
           </DialogFooter>
         </div>
       </DialogContent>

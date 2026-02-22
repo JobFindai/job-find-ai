@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowLeft } from "lucide-react";
 import OnboardHeader from "./OnboardHeader";
 
 const usersCategory = [
@@ -30,7 +29,7 @@ export default function StepOne({
 }) {
   return (
     <Slide direction="right" className=" flex flex-col gap-5  min-w-2/4 h-3/4">
-      <div className="px-10 flex flex-col text-center gap-10 ">
+      <div className="lg:px-10 p-5 flex flex-col text-center gap-10 ">
         <OnboardHeader
           step={step}
           title="Where are you in your career?"
