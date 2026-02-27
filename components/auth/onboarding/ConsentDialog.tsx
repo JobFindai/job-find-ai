@@ -10,6 +10,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useSignUp } from "@clerk/nextjs";
+import { OAuthStrategy } from "@clerk/types";
 import { Eye, Mail, Shield } from "lucide-react";
 
 type Variant =
@@ -48,6 +50,20 @@ export default function ConsentDialog({
   variant?: Variant;
   className?: string;
 }) {
+  const { signUp } = useSignUp();
+  function signUpWith(strategy: OAuthStrategy) {
+    return signUp
+      ?.authenticateWithRedirect({
+        strategy,
+        redirectUrl: "/onboarding/sso-callback",
+        redirectUrlComplete: "/onboarding?step=1",
+      })
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -85,7 +101,7 @@ export default function ConsentDialog({
             </Button>
             <DialogClose asChild>
               <Button
-                onClick={() => setConnected(true)}
+                onClick={() => signUpWith("oauth_google")}
                 className="h-11 lg:w-2/4 font-medium"
               >
                 Continue with Gmail
