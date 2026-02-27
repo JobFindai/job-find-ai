@@ -10,8 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { useSignUp } from "@clerk/nextjs";
-import { OAuthStrategy } from "@clerk/types";
+import { OAuthStrategy, SignUpResource } from "@clerk/types";
 import { Eye, Mail, Shield } from "lucide-react";
 
 type Variant =
@@ -40,17 +39,18 @@ const consent = [
 ];
 
 export default function ConsentDialog({
-  setConnected,
   text,
   variant,
   className,
+  signUp,
+  isLoaded,
 }: {
-  setConnected: (val: boolean) => void;
+  signUp?: SignUpResource | undefined;
+  isLoaded?: boolean;
   text: string;
   variant?: Variant;
   className?: string;
 }) {
-  const { signUp } = useSignUp();
   function signUpWith(strategy: OAuthStrategy) {
     return signUp
       ?.authenticateWithRedirect({

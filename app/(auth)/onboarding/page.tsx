@@ -4,20 +4,16 @@ import StepFour from "@/components/auth/onboarding/StepFour";
 import StepOne from "@/components/auth/onboarding/StepOne";
 import StepThree from "@/components/auth/onboarding/StepThree";
 import StepTwo from "@/components/auth/onboarding/StepTwo";
+import { useAuth } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);
   const searchParams = useSearchParams();
   const stepVal = searchParams.get("step");
   const router = useRouter();
-
-  useEffect(() => {
-    (async () => {
-      setStep(Number(stepVal));
-    })();
-  }, [stepVal]);
+  const { userId, isSignedIn } = useAuth();
 
   function changeStep(step: string) {
     // Get current search params and update it
@@ -30,7 +26,12 @@ export default function Onboarding() {
 
   return (
     <div className="flex-1 flex items-center justify-center">
-      {step === 0 && <PreStep goStep={(step) => setStep(step)} />}
+      {step === 0 && (
+        <PreStep
+          isSignedIn={isSignedIn}
+          goStep={(step) => changeStep(step.toString())}
+        />
+      )}
       {step === 1 && (
         <StepOne step={step} goStep={(step) => changeStep(step.toString())} />
       )}
