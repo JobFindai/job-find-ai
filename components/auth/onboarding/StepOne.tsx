@@ -8,14 +8,17 @@ import OnboardHeader from "./OnboardHeader";
 const usersCategory = [
   {
     title: "Student",
+    value: "STUDENT",
     description: "I am studying or looking for first full-time job",
   },
   {
     title: "Career Switcher",
+    value: "CAREER_SWITCH",
     description: "I am transitioning into a new field",
   },
   {
     title: "Experienced Professional",
+    value: "EXPERIENCED_PROFESSIONAL",
     description: "I have experience and i want to grow in my field",
   },
 ];
@@ -36,7 +39,7 @@ export default function StepOne({
           description=" This helps us personalize your job matches and coaching experience"
         />
 
-        <RadioGroup defaultValue="Student">
+        <RadioGroup defaultValue="STUDENT">
           <div className="flex flex-col gap-7">
             {usersCategory.map((user) => (
               <div
@@ -44,7 +47,7 @@ export default function StepOne({
                 className=" bg-white shadow-xl shadow-gray-200/50 rounded-sm flex p-5 min-h-16 gap-3 items-center  text-center"
               >
                 <RadioGroupItem
-                  value={user.title}
+                  value={user.value}
                   id={user.title}
                   className="size-5  focus-visible:ring-primary text-white"
                 />

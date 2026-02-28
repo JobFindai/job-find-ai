@@ -12,16 +12,17 @@ export default function StepThree({
   goStep: (step: number) => void;
 }) {
   const currentLevel = [
-    "Entry Level",
-    "Mid-Level",
-    "Senior Level",
-    "Lead Manager",
+    { label: "Entry Level", value: "ENTRY_LEVEL" },
+    { label: "Mid-Level", value: "MID_LEVEL" },
+    { label: "Senior Level", value: "SENIOR_LEVEL" },
+    { label: "Lead Manager", value: "LEAD_MANAGER" },
   ];
+
   const targetLevel = [
-    "Entry Level",
-    "Mid-Level",
-    "Senior Level",
-    "Lead Manager",
+    { label: "Entry Level", value: "ENTRY_LEVEL" },
+    { label: "Mid-Level", value: "MID_LEVEL" },
+    { label: "Senior Level", value: "SENIOR_LEVEL" },
+    { label: "Lead Manager", value: "LEAD_MANAGER" },
   ];
 
   return (
@@ -36,7 +37,7 @@ export default function StepThree({
       />
       <div className=" flex-1 flex flex-col gap-10 w-full">
         <RadioGroup
-          defaultValue="Entry Level"
+          defaultValue="ENTRY_LEVEL"
           className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Select your current level</span>
@@ -44,18 +45,18 @@ export default function StepThree({
             {currentLevel.map((item) => (
               <div
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
-                key={item}
+                key={item.label}
               >
-                <RadioGroupItem value={item} id={item} />
-                <Label className="text-black/80 text-base" htmlFor={item}>
-                  {item}
+                <RadioGroupItem value={item.value} id={item.label} />
+                <Label className="text-black/80 text-base" htmlFor={item.label}>
+                  {item.label}
                 </Label>
               </div>
             ))}
           </div>
         </RadioGroup>
         <RadioGroup
-          defaultValue="Entry Level"
+          defaultValue="SENIOR_LEVEL"
           className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Target level you want to apply for</span>
@@ -63,11 +64,11 @@ export default function StepThree({
             {targetLevel.map((item) => (
               <div
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
-                key={item}
+                key={item.label}
               >
-                <RadioGroupItem value={item} id={item} />
-                <Label className="text-black/80 text-base" htmlFor={item}>
-                  {item}
+                <RadioGroupItem value={item.value} id={item.label} />
+                <Label className="text-black/80 text-base" htmlFor={item.label}>
+                  {item.label}
                 </Label>
               </div>
             ))}
