@@ -4,24 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import OnboardHeader from "./OnboardHeader";
-
-const usersCategory = [
-  {
-    title: "Student",
-    value: "STUDENT",
-    description: "I am studying or looking for first full-time job",
-  },
-  {
-    title: "Career Switcher",
-    value: "CAREER_SWITCH",
-    description: "I am transitioning into a new field",
-  },
-  {
-    title: "Experienced Professional",
-    value: "EXPERIENCED_PROFESSIONAL",
-    description: "I have experience and i want to grow in my field",
-  },
-];
+import { usersCategory } from "@/lib/constants";
 
 export default function StepOne({
   goStep,

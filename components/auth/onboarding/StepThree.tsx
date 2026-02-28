@@ -3,6 +3,7 @@ import OnboardHeader from "./OnboardHeader";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { currentLevel, targetLevel } from "@/lib/constants";
 
 export default function StepThree({
   step,
@@ -11,20 +12,6 @@ export default function StepThree({
   step: number;
   goStep: (step: number) => void;
 }) {
-  const currentLevel = [
-    { label: "Entry Level", value: "ENTRY_LEVEL" },
-    { label: "Mid-Level", value: "MID_LEVEL" },
-    { label: "Senior Level", value: "SENIOR_LEVEL" },
-    { label: "Lead Manager", value: "LEAD_MANAGER" },
-  ];
-
-  const targetLevel = [
-    { label: "Entry Level", value: "ENTRY_LEVEL" },
-    { label: "Mid-Level", value: "MID_LEVEL" },
-    { label: "Senior Level", value: "SENIOR_LEVEL" },
-    { label: "Lead Manager", value: "LEAD_MANAGER" },
-  ];
-
   return (
     <Slide
       direction="right"

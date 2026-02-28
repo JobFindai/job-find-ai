@@ -2,16 +2,16 @@ import { Slide } from "@/components/animation/Slide";
 import JobCard from "./JobCard";
 import OnboardHeader from "./OnboardHeader";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 export default function StepFour({
   step,
+  handleOnboardingComplete,
   goStep,
 }: {
   step: number;
+  handleOnboardingComplete: () => void;
   goStep: (step: number) => void;
 }) {
-  const router = useRouter();
   return (
     <Slide
       direction="right"
@@ -38,7 +38,7 @@ export default function StepFour({
         </Button>
         <Button
           variant="link"
-          onClick={() => router.push("/")}
+          onClick={handleOnboardingComplete}
           className="h-12"
         >
           Skip to dashboard
