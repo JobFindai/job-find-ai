@@ -11,6 +11,7 @@ interface SlideProps {
   delay?: number;
   duration?: number;
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const getDirectionOffset = (direction: Direction) => {
@@ -34,11 +35,13 @@ export const Slide = ({
   delay = 0,
   duration = 0.6,
   className = "",
+  onClick,
 }: SlideProps) => {
   const offset = getDirectionOffset(direction);
 
   return (
     <motion.div
+      onClick={onClick}
       initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

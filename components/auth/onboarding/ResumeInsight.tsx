@@ -7,8 +7,10 @@ import OnboardHeader from "./OnboardHeader";
 export default function ResumeInsight({
   step,
   goStep,
+  changeResume,
 }: {
   step: number;
+  changeResume: () => void;
   goStep: (step: number) => void;
 }) {
   return (
@@ -29,7 +31,11 @@ export default function ResumeInsight({
         <RoleMatch />
       </div>
       <div className="flex justify-between items-center text-sm w-full lg:w-3/5">
-        <Button className="text-muted-foreground" variant="ghost">
+        <Button
+          onClick={() => changeResume()}
+          className="text-muted-foreground"
+          variant="ghost"
+        >
           Change resume
         </Button>
         <Button onClick={() => goStep(3)} className="h-12 lg:w-1/4">

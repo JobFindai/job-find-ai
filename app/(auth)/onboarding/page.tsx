@@ -6,7 +6,7 @@ import StepThree from "@/components/auth/onboarding/StepThree";
 import StepTwo from "@/components/auth/onboarding/StepTwo";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);
@@ -23,6 +23,12 @@ export default function Onboarding() {
     // Push to new search params
     router.push(`/onboarding?${params.toString()}`);
   }
+
+  useEffect(() => {
+    (async function () {
+      setStep(Number(stepVal));
+    })();
+  }, [stepVal]);
 
   return (
     <div className="flex-1 flex items-center justify-center">

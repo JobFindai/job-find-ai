@@ -18,7 +18,7 @@ export default function PreStep({
     <Slide
       direction="right"
       className={cn(
-        " flex flex-col p-10 rounded-md lg:shadow-xl shadow-gray-400/10 lg:bg-white items-center gap-5 lg:w-1/3 min-h-96",
+        " flex flex-col p-10 rounded-md lg:shadow-xl shadow-gray-400/10 lg:bg-white justify-evenly items-center gap-5 lg:w-1/3 min-h-96",
       )}
     >
       {!isLoaded && (

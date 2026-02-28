@@ -10,13 +10,13 @@ import {
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Eye } from "lucide-react";
-import Image from "next/image";
 import { z } from "zod";
 import { SignupSchemaType } from "@/types/users";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
+import Logo from "@/components/Logo";
 
 // Zod Schema
 
@@ -110,15 +110,7 @@ export default function SignUp({ goStep }: { goStep: (step: number) => void }) {
             <Separator className="w-1/3! h-0.5!" />
           </div>
           <Button className="bg-gray-100 text-gray-700 w-full flex items-center  h-11 hover:bg-gray-200">
-            <div className="size-5">
-              <Image
-                src="/google.png"
-                alt="google"
-                width={500}
-                height={500}
-                className="size-full"
-              />
-            </div>
+            <Logo />
             <span>Sign in with Google</span>
           </Button>
           <span className="text-sm">
