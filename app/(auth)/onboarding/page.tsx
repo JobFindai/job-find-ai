@@ -13,7 +13,7 @@ export default function Onboarding() {
   const searchParams = useSearchParams();
   const stepVal = searchParams.get("step");
   const router = useRouter();
-  const { userId, isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth();
 
   function changeStep(step: string) {
     // Get current search params and update it
@@ -25,10 +25,14 @@ export default function Onboarding() {
   }
 
   useEffect(() => {
+    if (!isSignedIn) {
+      router.push("/onboarding");
+      return;
+    }
     (async function () {
       setStep(Number(stepVal));
     })();
-  }, [stepVal]);
+  }, [stepVal, isSignedIn, router]);
 
   return (
     <div className="flex-1 flex items-center justify-center">

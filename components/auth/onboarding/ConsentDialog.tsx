@@ -10,7 +10,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { OAuthStrategy, SignUpResource } from "@clerk/types";
 import { Eye, Mail, Shield } from "lucide-react";
 
 type Variant =
@@ -40,30 +39,17 @@ const consent = [
 
 export default function ConsentDialog({
   text,
+  btnText,
   variant,
   className,
-  signUp,
-  isLoaded,
+  handleSignUp,
 }: {
-  signUp?: SignUpResource | undefined;
-  isLoaded?: boolean;
   text: string;
+  btnText?: string;
   variant?: Variant;
   className?: string;
+  handleSignUp: () => void;
 }) {
-  function signUpWith(strategy: OAuthStrategy) {
-    return signUp
-      ?.authenticateWithRedirect({
-        strategy,
-        redirectUrl: "/onboarding/sso-callback",
-        redirectUrlComplete: "/onboarding?step=1",
-      })
-      .then((res) => console.log(res))
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -79,13 +65,13 @@ export default function ConsentDialog({
             </DialogTitle>
             <DialogDescription className="flex flex-col gap-3">
               {consent.map((item) => (
-                <div
+                <span
                   className="flex gap-2 text-xs text-left leading-normal text-foreground"
                   key={item.content}
                 >
                   <item.icon size={17} />
                   <span>{item.content}</span>
-                </div>
+                </span>
               ))}
             </DialogDescription>
             <div className="text-primary  text-sm flex-1 grid place-items-center">
@@ -96,15 +82,17 @@ export default function ConsentDialog({
             </div>
           </DialogHeader>
           <DialogFooter className="text-sm">
-            <Button variant="ghost" className="h-11 font-medium">
-              Cancel
-            </Button>
+            <DialogClose asChild>
+              <Button variant="ghost" className="h-11 lg:w-1/4 font-medium">
+                Cancel
+              </Button>
+            </DialogClose>
             <DialogClose asChild>
               <Button
-                onClick={() => signUpWith("oauth_google")}
+                onClick={handleSignUp}
                 className="h-11 lg:w-2/4 font-medium"
               >
-                Continue with Gmail
+                {btnText ? btnText : "Continue with Gmail"}
               </Button>
             </DialogClose>
           </DialogFooter>

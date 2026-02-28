@@ -33,7 +33,38 @@ export default function StepTwo({
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
   );
 
-  useEffect(() => {}, []);
+  // Check if user has uploaded before and retrieve
+  useEffect(() => {
+    async function retrieveResume() {
+      // Get Resume
+      const { data } = await supabase.storage
+        .from("resume")
+        .list(user.userId ?? undefined);
+
+      const resume = data?.at(0);
+
+      // Get Resume Pub Url
+      const { data: url } = supabase.storage
+        .from("resume")
+        .getPublicUrl(`${user.userId}/${resume?.name}`);
+
+      console.log(resume);
+
+      // Set Resume State
+      setResumeState((prev) => ({
+        ...prev,
+        name: resume?.name ?? "",
+        contentType: resume?.metadata?.mimetype ?? "",
+        size: resume?.metadata?.size ? resume.metadata.size / 1000 : 0,
+        url: url.publicUrl ?? "",
+        path: `${user.userId}/${resume?.name}`,
+      }));
+
+      return;
+    }
+
+    retrieveResume();
+  }, [supabase, user]);
 
   // Handle Resume Upload
   const onDrop = useCallback(
