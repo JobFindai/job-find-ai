@@ -5,11 +5,16 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import OnboardHeader from "./OnboardHeader";
 import { usersCategory } from "@/lib/constants";
+import { UserType } from "@/types/users";
 
 export default function StepOne({
   goStep,
   step,
+  handleChange,
+  userType,
 }: {
+  userType: UserType;
+  handleChange: (val: UserType) => void;
   goStep: (step: number) => void;
   step: number;
 }) {
@@ -22,7 +27,11 @@ export default function StepOne({
           description=" This helps us personalize your job matches and coaching experience"
         />
 
-        <RadioGroup defaultValue="STUDENT">
+        <RadioGroup
+          value={userType}
+          onValueChange={(val) => handleChange(val as UserType)}
+          defaultValue="STUDENT"
+        >
           <div className="flex flex-col gap-7">
             {usersCategory.map((user) => (
               <div

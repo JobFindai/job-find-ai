@@ -1,12 +1,12 @@
 "use client";
 import { Slide } from "@/components/animation/Slide";
-import Navbar from "@/components/dashboard/Navbar";
+import Navbar from "@/components/onboarding/Navbar";
 import { useAuth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const { isSignedIn } = useAuth();
-  if (!isSignedIn) {
+  const { userId, isLoaded } = useAuth();
+  if (!userId && isLoaded) {
     return redirect("/onboarding");
   }
   return (

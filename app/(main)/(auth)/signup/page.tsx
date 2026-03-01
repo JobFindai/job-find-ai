@@ -19,7 +19,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 // Zod Schema
-
 export const signupSchema = z.object({
   email: z
     .string()

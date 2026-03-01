@@ -4,27 +4,35 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { currentLevel, targetLevel } from "@/lib/constants";
+import { LevelType } from "@/types/users";
+import { UpdatePayloadType } from "@/app/(main)/(auth)/onboarding/page";
 
 export default function StepThree({
   step,
   goStep,
+  handleChange,
+  updatePayload,
 }: {
+  handleChange: (val: LevelType, label: "current" | "target") => void;
   step: number;
   goStep: (step: number) => void;
+  updatePayload: UpdatePayloadType;
 }) {
   return (
     <Slide
       direction="right"
-      className=" flex flex-col items-center gap-6 min-w-2/4 min-h-96"
+      className=" flex flex-col items-center gap-6 w-full px-4   min-h-96"
     >
       <OnboardHeader
         step={step}
         title="Select your experience level"
         description="Tell us where you are and where you want to grow"
       />
-      <div className=" flex-1 flex flex-col gap-10 w-full">
+      <div className=" flex-1 flex flex-col gap-10  w-full lg:w-2/4">
         <RadioGroup
+          onValueChange={(val) => handleChange(val as LevelType, "current")}
           defaultValue="ENTRY_LEVEL"
+          value={updatePayload.currentLevel}
           className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Select your current level</span>
@@ -34,8 +42,14 @@ export default function StepThree({
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
                 key={item.label}
               >
-                <RadioGroupItem value={item.value} id={item.label} />
-                <Label className="text-black/80 text-base" htmlFor={item.label}>
+                <RadioGroupItem
+                  value={item.value}
+                  id={`current-${item.label}`}
+                />
+                <Label
+                  className="text-black/80 text-base"
+                  htmlFor={`current-${item.label}`}
+                >
                   {item.label}
                 </Label>
               </div>
@@ -44,6 +58,8 @@ export default function StepThree({
         </RadioGroup>
         <RadioGroup
           defaultValue="SENIOR_LEVEL"
+          value={updatePayload.targetLevel}
+          onValueChange={(val) => handleChange(val as LevelType, "target")}
           className="h-2/4 flex flex-col lg:gap-4 gap-5"
         >
           <span>Target level you want to apply for</span>
@@ -51,10 +67,16 @@ export default function StepThree({
             {targetLevel.map((item) => (
               <div
                 className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
-                key={item.label}
+                key={item.value}
               >
-                <RadioGroupItem value={item.value} id={item.label} />
-                <Label className="text-black/80 text-base" htmlFor={item.label}>
+                <RadioGroupItem
+                  value={item.value}
+                  id={`target-${item.label}`}
+                />
+                <Label
+                  className="text-black/80 text-base"
+                  htmlFor={`target-${item.label}`}
+                >
                   {item.label}
                 </Label>
               </div>

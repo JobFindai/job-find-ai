@@ -48,8 +48,6 @@ export default function StepTwo({
         .from("resume")
         .getPublicUrl(`${user.userId}/${resume?.name}`);
 
-      console.log(resume);
-
       // Set Resume State
       setResumeState((prev) => ({
         ...prev,
