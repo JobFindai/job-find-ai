@@ -6,7 +6,7 @@ export const usersCategory = [
   },
   {
     title: "Career Switcher",
-    value: "CAREER_SWITCH",
+    value: "CAREER_SWITCHER",
     description: "I am transitioning into a new field",
   },
   {

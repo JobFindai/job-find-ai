@@ -4,10 +4,8 @@ import StepFour from "@/components/auth/onboarding/StepFour";
 import StepOne from "@/components/auth/onboarding/StepOne";
 import StepThree from "@/components/auth/onboarding/StepThree";
 import StepTwo from "@/components/auth/onboarding/StepTwo";
-import Loader from "@/components/Loader";
-import { LevelType, User, UserType } from "@/types/users";
+import { LevelType, UserType } from "@/types/users";
 import { useAuth } from "@clerk/nextjs";
-import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -22,45 +20,12 @@ export default function Onboarding() {
   const searchParams = useSearchParams();
   const stepVal = searchParams.get("step");
   const router = useRouter();
-  const { isSignedIn, getToken, isLoaded } = useAuth();
+  const { isSignedIn, getToken } = useAuth();
+
   const [updatePayload, setUpdatePayload] = useState<UpdatePayloadType>({
     type: "STUDENT",
     currentLevel: "ENTRY_LEVEL",
     targetLevel: "SENIOR_LEVEL",
-  });
-
-  // Fetch user data on mount
-  const { isLoading } = useQuery({
-    queryKey: ["user"],
-    enabled: isLoaded,
-    queryFn: async () => {
-      const token = await getToken();
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
-        {
-          credentials: "include",
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-
-      if (!res.ok) throw Error("User was not fetched successfully");
-
-      const user = (await res.json()) as {
-        status: string;
-        message: string;
-        data: User;
-      };
-
-      if (user.data.onboardingStatus === "COMPLETED") {
-        router.push("/");
-      }
-
-      return user.data;
-    },
   });
 
   function changeStep(step: string) {
@@ -77,7 +42,7 @@ export default function Onboarding() {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
       {
-        // credentials: "include",
+        credentials: "include",
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -95,19 +60,13 @@ export default function Onboarding() {
   }
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push("/onboarding");
-      return;
-    }
-
     (async function () {
       setStep(Number(stepVal));
     })();
-  }, [stepVal, isLoaded, isSignedIn, router]);
+  }, [stepVal]);
 
   return (
     <>
-      <Loader loading={isLoading} />
       <div className="flex-1 flex items-center justify-center">
         {step === 0 && (
           <PreStep

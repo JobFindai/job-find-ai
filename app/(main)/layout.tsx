@@ -1,17 +1,70 @@
 "use client";
-import { ClerkProvider } from "@clerk/nextjs";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import Loader from "@/components/Loader";
+import { User } from "@/types/users";
+import { useAuth } from "@clerk/nextjs";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+
+  const { isSignedIn, getToken, isLoaded } = useAuth();
+
+  const { data: user, isLoading } = useQuery({
+    queryKey: ["user"],
+    enabled: isLoaded,
+    queryFn: async () => {
+      const token = await getToken();
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
+        {
+          credentials: "include",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!res.ok) throw Error("User was not fetched successfully");
+      const user = (await res.json()) as {
+        status: string;
+        message: string;
+        data: User;
+      };
+      console.log(user, "undefiend");
+
+      return user.data;
+    },
+  });
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    if (!user) return;
+
+    if (!isSignedIn) {
+      router.push("/login");
+      return;
+    }
+
+    if (user.onboardingStatus === "COMPLETED") {
+      router.push("/");
+    } else {
+      router.push("/onboarding");
+    }
+  }, [isLoaded, isSignedIn, user, router]);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <ClerkProvider>{children}</ClerkProvider>
-    </QueryClientProvider>
+    <>
+      <Loader loading={isLoading} />
+      {children}
+    </>
   );
 }

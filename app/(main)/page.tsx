@@ -1,17 +1,17 @@
 "use client";
 import { Slide } from "@/components/animation/Slide";
-import Navbar from "@/components/onboarding/Navbar";
-import { useAuth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import Greeting from "@/components/dashboard/Greeting";
+import JobRecommendation from "@/components/dashboard/JobRecommendation";
+import Navbar from "@/components/dashboard/Navbar";
 
 export default function Home() {
-  const { userId, isLoaded } = useAuth();
-  if (!userId && isLoaded) {
-    return redirect("/onboarding");
-  }
   return (
-    <Slide direction="up">
+    <Slide className="min-h-screen  flex flex-col" direction="up">
       <Navbar />
+      <div className="flex-1 p-10 bg-gray-100 flex flex-col gap-10">
+        <Greeting />
+        <JobRecommendation />
+      </div>
     </Slide>
   );
 }

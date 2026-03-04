@@ -1,4 +1,4 @@
-import { signupSchema } from "@/app/(auth)/signup/page";
+import { signupSchema } from "@/app/(main)/(auth)/signup/page";
 import z from "zod";
 
 export type SignupSchemaType = z.infer<typeof signupSchema>;

@@ -3,8 +3,9 @@ import { Mail } from "lucide-react";
 import ConsentDialog from "./ConsentDialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useSignUp } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
+import Link from "next/link";
+import { useSignUp } from "@clerk/nextjs";
 import { OAuthStrategy } from "@clerk/types";
 import { useState } from "react";
 
@@ -56,7 +57,7 @@ export default function PreStep({
               : "Your have successfully connected your inbox. Continue to start tracking your applications"}
           </p>
         </div>
-        <div className="flex flex-col text-sm gap-3 w-full">
+        <div className="flex flex-col text-sm gap-4 w-full">
           {isSignedIn ? (
             <Button onClick={() => goStep(1)} className="h-11">
               Continue
@@ -76,6 +77,12 @@ export default function PreStep({
                 variant="outline"
                 text="Connect your existing gmail account"
               />
+              <span className="text-sm text-center">
+                Already have an account?{" "}
+                <Link href="/login" className="text-primary font-semibold">
+                  Login
+                </Link>
+              </span>
             </>
           )}
         </div>
