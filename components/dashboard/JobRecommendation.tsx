@@ -18,7 +18,7 @@ export default function JobRecommendation() {
         <h4 className="font-medium">Recommended for you</h4>
         <Button variant="outline">See All</Button>
       </div>
-      <div className="grid grid-cols-3 grid-rows-[1fr_1.5fr] gap-5">
+      <div className="lg:grid grid-cols-3 flex flex-col grid-rows-[1fr_1.5fr] gap-5">
         <JobCard />
         <JobCard />
         <JobCard />

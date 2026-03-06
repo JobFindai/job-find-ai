@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Slide className="min-h-screen  flex flex-col" direction="up">
       <Navbar />
-      <div className="flex-1 p-10 bg-gray-100 flex flex-col gap-10">
+      <div className="flex-1 lg:p-10 p-5 bg-gray-100 flex flex-col gap-10">
         <Greeting />
         <JobRecommendation />
       </div>

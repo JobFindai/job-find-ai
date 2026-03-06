@@ -19,35 +19,43 @@ export default function MainLayout({
     queryKey: ["user"],
     enabled: isLoaded,
     queryFn: async () => {
-      const token = await getToken();
+      try {
+        const token = await getToken();
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
-        {
-          credentials: "include",
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
+          {
+            credentials: "include",
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      );
+        );
 
-      if (!res.ok) throw Error("User was not fetched successfully");
-      const user = (await res.json()) as {
-        status: string;
-        message: string;
-        data: User;
-      };
-      console.log(user, "undefiend");
+        if (!res.ok) throw Error("User was not fetched successfully");
+        const user = (await res.json()) as {
+          status: string;
+          message: string;
+          data: User;
+        };
+        console.log(user, "undefiend");
 
-      return user.data;
+        return user.data;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
     },
   });
 
   useEffect(() => {
     if (!isLoaded) return;
 
-    if (!user) return;
+    if (!user) {
+      // router.push("/login");
+      return;
+    }
 
     if (!isSignedIn) {
       router.push("/login");
