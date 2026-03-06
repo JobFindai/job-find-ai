@@ -13,11 +13,11 @@ export default function Loader({
       {loading && (
         <div
           className={cn(
-            " absolute inset-0 bg-black/70 grid place-items-center",
+            " absolute inset-0  bg-black/70 grid place-items-center",
             className,
           )}
         >
-          <BounceLoader color="#0ea5a4 " loading={loading} />
+          <BounceLoader color="#0ea5a4" loading={loading} />
         </div>
       )}
     </>

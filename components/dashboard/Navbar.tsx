@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="min-h-[12vh] flex h-12 items-center pr-7 lg:pr-0 justify-between">
       <Logo className="static" />
       {isMobile ? (
-        <PanelRight />
+        <PanelRight size={20} />
       ) : (
         <>
           <div className="w-2/4  font-medium items-center text-black/80 flex justify-between h-full">
