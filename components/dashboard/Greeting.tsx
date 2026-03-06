@@ -37,7 +37,7 @@ export default function Greeting() {
 
 function DashBoardStatCard({ title, count }: { title: string; count: number }) {
   return (
-    <div className="bg-white px-4 lg:py-7 py-5 rounded-md flex justify-evenly flex-col shadow-lg/5">
+    <div className="bg-white px-4 lg:py-7 py-5 rounded-md flex lg:justify-between justify-evenly flex-col shadow-lg/5">
       <span className="lg:text-sm text-lg font-medium">{title}</span>
       <span className="lg:text-3xl text-5xl font-bold">{count}</span>
       <span className="text-xs mt-2">Last 30 days</span>
