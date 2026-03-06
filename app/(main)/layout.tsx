@@ -53,7 +53,7 @@ export default function MainLayout({
     if (!isLoaded) return;
 
     if (!user) {
-      // router.push("/login");
+      router.push("/login");
       return;
     }
 
