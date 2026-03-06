@@ -1,6 +1,6 @@
 "use client";
 import Loader from "@/components/Loader";
-import { User } from "@/types/users";
+import { getUser } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -19,33 +19,8 @@ export default function MainLayout({
     queryKey: ["user"],
     enabled: isLoaded,
     queryFn: async () => {
-      try {
-        const token = await getToken();
-
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
-          {
-            credentials: "include",
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-
-        if (!res.ok) throw Error("User was not fetched successfully");
-        const user = (await res.json()) as {
-          status: string;
-          message: string;
-          data: User;
-        };
-        console.log(user, "undefiend");
-
-        return user.data;
-      } catch (error) {
-        console.log(error);
-        return null;
-      }
+      const token = await getToken();
+      return await getUser(token);
     },
   });
 
@@ -53,7 +28,6 @@ export default function MainLayout({
     if (!isLoaded) return;
 
     if (!user) {
-      router.push("/login");
       return;
     }
 
