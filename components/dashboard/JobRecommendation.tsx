@@ -10,21 +10,26 @@ import {
 } from "@/components/ui/card";
 import { AlertCircle, Bookmark, MapPin } from "lucide-react";
 import Image from "next/image";
+import GhostBursterBot from "./GhostBursterBot";
+import SmartNudges from "./SmartNudges";
+import GrowthPath from "./GrowthPath";
+import { useIsMobile } from "@/hooks/useMobile";
 
 export default function JobRecommendation() {
+  const isMobile = useIsMobile();
   return (
     <div className=" flex-1 flex flex-col gap-5">
       <div className=" flex justify-between items-center">
         <h4 className="font-medium">Recommended for you</h4>
-        <Button variant="outline">See All</Button>
+        <Button variant={isMobile ? "link" : "outline"}>See All</Button>
       </div>
-      <div className="lg:grid grid-cols-3 flex flex-col grid-rows-[1fr_1.5fr] gap-5">
+      <div className="lg:grid grid-cols-3 flex flex-col grid-rows-[1fr_1.5fr] lg:gap-5 gap-10">
         <JobCard />
         <JobCard />
         <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
+        <GhostBursterBot isMobile={isMobile} />
+        <SmartNudges isMobile={isMobile} />
+        <GrowthPath isMobile={isMobile} />
       </div>
     </div>
   );
