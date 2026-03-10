@@ -18,6 +18,15 @@ import {
 } from "@/components/ui/menubar";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "../ui/button";
 
 const navItems = [
   { title: "Dashboard", active: true },
@@ -33,7 +42,41 @@ export default function Navbar() {
     <div className="lg:min-h-[12vh] h-[10vh] lg:bg-white  shadow-sm  flex fixed top-0 z-20 bg-inherit w-full items-center pr-7 lg:pr-0 justify-between">
       <Logo className="static" />
       {isMobile ? (
-        <PanelRight size={20} />
+        <Sheet>
+          <SheetTrigger>
+            <PanelRight size={20} />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full justify-start!">
+            <SheetHeader>
+              <SheetTitle>Are you absolutely sure?</SheetTitle>
+            </SheetHeader>
+            <div className="p-5 flex flex-col gap-10">
+              <div className="gap-3 flex-1 flex flex-col">
+                {navItems.map((item) => (
+                  <span
+                    className={cn(
+                      "text-lg font-medium p-3 pb-5 border-b",
+                      item.active &&
+                        "bg-primary/10 px-3 py-1.5 rounded-md text-black",
+                    )}
+                    key={item.title}
+                  >
+                    {item.title}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-col gap-5">
+                <Button className="h-14 ">Explore matches</Button>
+                <Button
+                  className="border border-primary h-14 text-primary"
+                  variant="ghost"
+                >
+                  Track Applications
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       ) : (
         <>
           <div className="w-2/5  font-medium items-center  text-black/70 flex justify-around h-full">
