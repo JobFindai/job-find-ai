@@ -17,8 +17,15 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { cn } from "@/lib/utils";
 
-const navItems = ["Dashboard", "Jobs", "Applications", "Growth", "Automation"];
+const navItems = [
+  { title: "Dashboard", active: true },
+  { title: "Jobs" },
+  { title: "Applications" },
+  { title: "Growth" },
+  { title: "Automation" },
+];
 export default function Navbar() {
   const isMobile = useIsMobile();
 
@@ -31,8 +38,15 @@ export default function Navbar() {
         <>
           <div className="w-2/5  font-medium items-center  text-black/70 flex justify-around h-full">
             {navItems.map((item) => (
-              <span className="text-base" key={item}>
-                {item}
+              <span
+                className={cn(
+                  "text-base",
+                  item.active &&
+                    "bg-primary/10 px-3 py-1.5 rounded-md text-black",
+                )}
+                key={item.title}
+              >
+                {item.title}
               </span>
             ))}
           </div>
