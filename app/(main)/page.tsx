@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <Slide className="min-h-screen bg-gray-100 flex flex-col" direction="up">
       <Navbar />
-      <div className="flex-1 lg:p-10 lg:pb-16 p-5 pb-16  flex flex-col gap-10">
+      <div className="flex-1 lg:p-10 mt-24 lg:mt-20 lg:pb-16 p-5 pb-16  flex flex-col gap-10">
         <Greeting />
         <JobRecommendation />
       </div>

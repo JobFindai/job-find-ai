@@ -13,7 +13,7 @@ export default function Loader({
       {loading && (
         <div
           className={cn(
-            " absolute inset-0  bg-black/70 grid place-items-center",
+            " absolute inset-0 z-50 bg-black/70 grid place-items-center",
             className,
           )}
         >

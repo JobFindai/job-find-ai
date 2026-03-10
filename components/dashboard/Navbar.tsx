@@ -23,7 +23,7 @@ export default function Navbar() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-[12vh] lg:bg-white  lg:shadow-sm  flex h-12 items-center pr-7 lg:pr-0 justify-between">
+    <div className="lg:min-h-[12vh] h-[10vh] lg:bg-white  shadow-sm  flex fixed top-0 z-20 bg-inherit w-full items-center pr-7 lg:pr-0 justify-between">
       <Logo className="static" />
       {isMobile ? (
         <PanelRight size={20} />
