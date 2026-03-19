@@ -10,7 +10,7 @@ export default function SmartFeatureCard({
   description: string;
 }) {
   return (
-    <div className="relative min-h-80">
+    <div className="relative lg:h-72">
       <div className="absolute inset-0">
         <div className="h-2/4">
           <Image
@@ -23,17 +23,17 @@ export default function SmartFeatureCard({
         </div>
       </div>
       <div className="absolute inset-0 bg-primary-dark/10  rounded-lg" />
-      <div className="absolute inset-0  flex flex-col">
-        <div className="grid place-items-center h-8/12">
+      <div className="relative h-full flex flex-col">
+        <div className="h-4/6 pt-3 ">
           <Image
             src={`/${image}.png`}
             alt={title}
-            width={500}
-            height={500}
-            className="min-h-3/4 object-cover"
+            width={1000}
+            height={1000}
+            className="size-full object-contain"
           />
         </div>
-        <div className="flex flex-col items-center   text-center flex-1 justify-center px-6 gap-1">
+        <div className=" text-center flex-1 space-y-2 px-5">
           <h4 className="text-xl font-bold">{title}</h4>
           <span className="text-sm text-muted-foreground">{description}</span>
         </div>
