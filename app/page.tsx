@@ -5,6 +5,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import Partners from "@/components/home/Partners";
 import SmartFeatures from "@/components/home/SmartFeatures";
 import UniversityDashboard from "@/components/home/UniversityDashboard";
+import Waitlist from "@/components/home/Waitlist";
 import WhyDifferent from "@/components/home/WhyDifferent";
 
 export default function page() {
@@ -18,6 +19,7 @@ export default function page() {
       <WhyDifferent />
       <UniversityDashboard />
       <AboutUs />
+      <Waitlist />
     </div>
   );
 }
