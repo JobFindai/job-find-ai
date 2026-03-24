@@ -11,28 +11,33 @@ export default function AboutUs() {
         </p>
       </div>
       <div className="flex gap-2 flex-1 w-full">
-        <div className="w-4/6 bg-gray-200 rounded-xl">
-          <div>
-            <h4>The Stripe of Career Services</h4>
-            <p>
-              An AI infrastructure layer powering career development across
-              institutions, individuals, and enterprises
-            </p>
-          </div>
-          <div>
-            <h5>Our Mission</h5>
-            <p>
-              To become the Stripe of Career Services by providing institutions
-              and individuals an AI infrastructure layer for end-to-end career
-              guidance
-            </p>
-          </div>
-          <div>
-            <h5>Our Vision</h5>
-            <p>
-              To power career journeys globally with data-driven intelligence—so
-              everyone, everywhere, knows exactly what&apos;s next.
-            </p>
+        <div className="w-4/6  bg-gray-200 rounded-xl grid place-items-center">
+          <div className=" w-2/4 h-full leading-normal flex flex-col justify-evenly items-center">
+            <div className="flex flex-col gap-2">
+              <h4 className="text-4xl font-semibold">
+                The Stripe of Career Services
+              </h4>
+              <p>
+                An AI infrastructure layer powering career development across
+                institutions, individuals, and enterprises
+              </p>
+            </div>
+            <div className="flex flex-col gap-1">
+              <h5 className="text-blue-600 text-xl font-medium">Our Mission</h5>
+              <p>
+                To become the Stripe of Career Services by providing
+                institutions and individuals an AI infrastructure layer for
+                end-to-end career guidance
+              </p>
+            </div>
+            <div className="flex flex-col gap-1">
+              <h5 className="text-blue-600 text-xl font-medium">Our Vision</h5>
+              <p>
+                To power career journeys globally with data-driven
+                intelligence—so everyone, everywhere, knows exactly what&apos;s
+                next.
+              </p>
+            </div>
           </div>
         </div>
         <div className="w-2/6">

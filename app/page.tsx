@@ -1,4 +1,5 @@
 import AboutUs from "@/components/home/AboutUs";
+import FAQ from "@/components/home/FAQ";
 import Hero from "@/components/home/Hero";
 import HomeNav from "@/components/home/HomeNav";
 import HowItWorks from "@/components/home/HowItWorks";
@@ -20,6 +21,7 @@ export default function page() {
       <UniversityDashboard />
       <AboutUs />
       <Waitlist />
+      <FAQ />
     </div>
   );
 }
