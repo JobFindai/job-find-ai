@@ -35,17 +35,17 @@ const points = [
 
 export default function WhyDifferent() {
   return (
-    <div className="min-h-[70vh] flex flex-col gap-10 items-center mt-10 bg-gray-100 p-10">
-      <div className="flex flex-col items-center text-center leading-normal gap-3 w-2/6">
-        <h3 className="text-3xl font-bold text-black/90">
+    <div className="min-h-[70vh] flex flex-col gap-10 items-center mt-10 bg-gray-100 lg:p-10 px-5 py-10">
+      <div className="flex flex-col items-center text-center leading-normal gap-3 lg:w-2/6">
+        <h3 className="lg:text-3xl text-xl font-bold text-black/90">
           Why JobFind.AI is different
         </h3>
-        <span>
+        <span className="text-sm lg:text-base">
           We are not another job board. We are your career acceleration partner,
           using the <b>CARES</b> framework
         </span>
       </div>
-      <div className="lg:grid flex flex-col grid-cols-3 gap-y-10 gap-x-20 grid-rows-2 flex-1 w-5/6">
+      <div className="lg:grid flex flex-col grid-cols-3 gap-y-10 gap-x-20 grid-rows-2 flex-1 lg:w-5/6">
         {points.map((point) => (
           <div
             key={point.title}

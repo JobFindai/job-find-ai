@@ -22,14 +22,14 @@ const features = [
 ];
 export default function UniversityDashboard() {
   return (
-    <div className="min-h-[50vh] mt-10 flex items-center gap-7 flex-col pt-10">
-      <div className="flex items-center gap-1.5 font-medium text-main border-main rounded-sm h-8 text-sm px-5 border">
+    <div className="min-h-[50vh] mt-10 flex items-center lg:gap-7 gap-5 flex-col pt-10">
+      <div className="flex items-center gap-1.5 font-medium text-main border-main rounded-sm lg:h-8 h-7 text-sm lg:px-5 px-3 border">
         <Calendar size={17} />
         <span>Coming Soon, Q2 2025</span>
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <h3>University Dashboard</h3>
-        <p className="text-sm text-muted-foreground">
+        <h3 className="text-xl font-semibold">University Dashboard</h3>
+        <p className="text-sm lg:w-full w-5/6 text-center text-muted-foreground">
           Specialized tools for universities to help their students succeed in
           the global job market
         </p>
@@ -40,7 +40,7 @@ export default function UniversityDashboard() {
             key={feature.title}
             className="shadow-xl shadow-gray-400/15 p-5 flex-col flex items-center justify-center gap-2 rounded-lg text-center"
           >
-            <div className="bg-main/10 text-main rounded-full size-16 grid place-items-center">
+            <div className="bg-main/10 text-main rounded-full lg:size-16 size-14 grid place-items-center">
               <feature.icon size={27} />
             </div>
             <h4 className="font-semibold text-xl">{feature.title}</h4>
