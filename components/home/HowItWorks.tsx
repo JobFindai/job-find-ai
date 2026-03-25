@@ -29,18 +29,20 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <div className="min-h-[50vh] flex flex-col items-center text-white gap-10 justify-center p-10 bg-primary-dark mt-10">
-      <div className="flex flex-col items-center gap-3">
-        <h2 className="text-4xl font-semibold">How JobFind.Ai Works</h2>
-        <span>
+    <div className="min-h-[50vh] flex flex-col items-center text-white gap-10 justify-center lg:p-10 px-5 py-10 bg-primary-dark mt-10">
+      <div className="flex flex-col text-center items-center lg:gap-3 gap-1.5">
+        <h2 className="lg:text-4xl text-xl font-semibold">
+          How JobFind.Ai Works
+        </h2>
+        <span className="lg:text-base text-sm">
           From profile analysis to career acceleration in three simple steps
         </span>
       </div>
-      <div className="flex flex-col lg:flex-row justify-around  gap-10 items-center flex-1">
+      <div className="flex flex-col lg:flex-row justify-around  lg:gap-10 gap-12 items-center flex-1">
         {steps.map((item) => (
           <div
             key={item.title}
-            className="flex flex-col w-1/6  items-center text-center gap-3"
+            className="flex flex-col lg:w-1/6  items-start  lg:items-center lg:text-center lg:gap-3 gap-5"
           >
             <item.icon className="h-1/4" />
             <h3 className="text-lg h-1/4 leading-tight font-semibold">
