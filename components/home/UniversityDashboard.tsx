@@ -43,7 +43,9 @@ export default function UniversityDashboard() {
             <div className="bg-main/10 text-main rounded-full lg:size-16 size-14 grid place-items-center">
               <feature.icon size={27} />
             </div>
-            <h4 className="font-semibold text-xl">{feature.title}</h4>
+            <h4 className="font-semibold lg:text-xl text-lg">
+              {feature.title}
+            </h4>
             <p className="text-muted-foreground text-sm">
               {feature.description}
             </p>
