@@ -7,10 +7,10 @@ import { Typewriter } from "react-simple-typewriter";
 export default function Hero() {
   return (
     <Fadeup>
-      <div className="lg:h-screen h-[70vh] flex items-center justify-center mt-10 lg:mt-0 ">
-        <div className=" flex flex-col items-center  lg:gap-6 gap-5 w-11/12  lg:w-2/3 text-center">
+      <div className="lg:h-screen min-h-[65vh] flex items-center justify-center mt-16  lg:mt-0 ">
+        <div className=" flex flex-col items-center gap-6 w-11/12  lg:w-2/3 text-center">
           <Slide direction="down" delay={0.5}>
-            <div className="border border-main flex items-center gap-1.5 font-medium lg:py-1.5 py-1 lg:px-5 px-3 rounded-md text-xs text-main">
+            <div className="border border-main flex items-center mb-1 gap-1.5 font-medium lg:py-1.5 py-1 lg:px-5 px-3 rounded-md text-xs text-main">
               <Sparkles size={17} />
               <span>AI Career Agent That Grows With You</span>
             </div>

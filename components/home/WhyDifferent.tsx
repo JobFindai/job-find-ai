@@ -46,7 +46,7 @@ const points = [
     description:
       "Works everywhere. Global access compared to others limited regions.",
     animation: {
-      delay: 0.9,
+      delay: 0.7,
     },
   },
 ];
