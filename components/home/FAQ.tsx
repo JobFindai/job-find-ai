@@ -46,8 +46,8 @@ Automations: Smart nudges and Ghostbuster Bot follow-ups keep you moving forward
 
 export default function FAQ() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center gap-10 mt-10 flex-col">
-      <h3 className="text-3xl font-semibold">
+    <div className="min-h-[70vh] flex items-center justify-center lg:gap-10 gap-7 lg:mt-10 mt-5 p-5 flex-col">
+      <h3 className="lg:text-3xl text-2xl text-center font-semibold">
         Got Questions? We've Got Answers
       </h3>
       <Accordion

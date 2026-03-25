@@ -23,7 +23,9 @@ export default function AboutUs() {
               </p>
             </div>
             <div className="flex flex-col lg:gap-1 gap-2">
-              <h5 className="text-blue-600 text-xl font-medium">Our Mission</h5>
+              <h5 className="text-blue-600 lg:text-xl text-lg font-medium">
+                Our Mission
+              </h5>
               <p className="text-sm">
                 To become the Stripe of Career Services by providing
                 institutions and individuals an AI infrastructure layer for
@@ -31,7 +33,9 @@ export default function AboutUs() {
               </p>
             </div>
             <div className="flex flex-col lg:gap-1 gap-2">
-              <h5 className="text-blue-600 text-xl font-medium">Our Vision</h5>
+              <h5 className="text-blue-600 lg:text-xl text-lg font-medium">
+                Our Vision
+              </h5>
               <p className="text-sm">
                 To power career journeys globally with data-driven
                 intelligence—so everyone, everywhere, knows exactly what&apos;s
