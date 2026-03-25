@@ -15,7 +15,7 @@ export const MotionInView = ({
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, margin: "-50px" }}
+      viewport={{ once: true, margin: "-50px" }}
     >
       {children}
     </motion.div>

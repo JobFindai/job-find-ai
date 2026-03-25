@@ -15,7 +15,7 @@ export default function Fadeup({
       className={className}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       {children}
