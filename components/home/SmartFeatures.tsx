@@ -1,3 +1,4 @@
+import { Button } from "../ui/button";
 import SmartFeatureCard from "./SmartFeatureCard";
 
 const features = [
@@ -43,6 +44,14 @@ export default function SmartFeatures() {
         {features.map((feature) => (
           <SmartFeatureCard key={feature.image} {...feature} />
         ))}
+        <SmartFeatureCard className="hidden">
+          <div className="hidden lg:flex flex-col items-center justify-center h-full p-5 text-center gap-6">
+            <h4 className="text-xl font-bold">
+              Ready to begin your career journey?
+            </h4>
+            <Button className="w-3/4 h-11">Join the Waitlist</Button>
+          </div>
+        </SmartFeatureCard>
       </div>
     </div>
   );
