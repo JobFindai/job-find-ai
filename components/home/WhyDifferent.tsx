@@ -45,7 +45,7 @@ export default function WhyDifferent() {
           using the <b>CARES</b> framework
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-y-10 gap-x-20 grid-rows-2 flex-1 w-5/6">
+      <div className="lg:grid flex flex-col grid-cols-3 gap-y-10 gap-x-20 grid-rows-2 flex-1 w-5/6">
         {points.map((point) => (
           <div
             key={point.title}

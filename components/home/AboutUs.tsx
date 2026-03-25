@@ -10,7 +10,7 @@ export default function AboutUs() {
           using the <b>CARES</b> framework
         </p>
       </div>
-      <div className="flex gap-2 flex-1 w-full">
+      <div className="flex flex-col lg:flex-row gap-2 flex-1 w-full">
         <div className="w-4/6  bg-gray-200 rounded-xl grid place-items-center">
           <div className=" w-2/4 h-full leading-normal flex flex-col justify-evenly items-center">
             <div className="flex flex-col gap-2">

@@ -54,7 +54,7 @@ export default function FAQ() {
         type="single"
         collapsible
         defaultValue="shipping"
-        className="w-2xl"
+        className="lg:w-2xl"
       >
         {faqs.map((faq) => (
           <AccordionItem value={faq.question} key={faq.question}>

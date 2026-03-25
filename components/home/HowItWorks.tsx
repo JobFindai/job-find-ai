@@ -36,7 +36,7 @@ export default function HowItWorks() {
           From profile analysis to career acceleration in three simple steps
         </span>
       </div>
-      <div className="flex justify-around  gap-10 items-center flex-1">
+      <div className="flex flex-col lg:flex-row justify-around  gap-10 items-center flex-1">
         {steps.map((item) => (
           <div
             key={item.title}

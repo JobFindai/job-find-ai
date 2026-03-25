@@ -39,7 +39,7 @@ export default function SmartFeatures() {
           opportunities that match your unique profile and career aspirations
         </p>
       </div>
-      <div className="grid flex-1  w-5/6  grid-cols-3 gap-x-16 gap-y-10 grid-rows-2">
+      <div className="lg:grid flex flex-col flex-1  w-5/6  grid-cols-3 gap-x-16 gap-y-10 grid-rows-2">
         {features.map((feature) => (
           <SmartFeatureCard key={feature.image} {...feature} />
         ))}

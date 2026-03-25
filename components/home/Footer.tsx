@@ -19,7 +19,7 @@ export default function Footer() {
           </Button>
         </div>
       </div>
-      <div className="bg-primary/10 flex lg:p-10 mt-16  justify-around flex-1 w-full">
+      <div className="bg-primary/10 flex flex-col lg:flex-row lg:p-10 mt-16  justify-around flex-1 w-full">
         <div className="flex flex-col pl-16  w-1/3 gap-3">
           <div className="flex items-center min-w-20">
             <Logo className="static" />

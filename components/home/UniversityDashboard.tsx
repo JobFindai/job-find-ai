@@ -34,7 +34,7 @@ export default function UniversityDashboard() {
           the global job market
         </p>
       </div>
-      <div className="flex flex-1 gap-10 w-5/6 ">
+      <div className="flex flex-col lg:flex-row flex-1 gap-10 w-5/6 ">
         {features.map((feature) => (
           <div
             key={feature.title}
