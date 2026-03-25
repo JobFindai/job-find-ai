@@ -6,7 +6,7 @@ const navItems = ["Home", "Features", "About Us", "FAQs"];
 
 export default function HomeNav() {
   return (
-    <div className=" lg:h-[14vh] h-[12vh] flex bg-white items-center justify-between fixed top-0 w-full z-10 shadow-sm px-10">
+    <div className=" lg:h-[14vh] h-[11vh] flex bg-white items-center justify-between fixed top-0 w-full z-10 shadow-sm px-10">
       <div className=" h-full grid place-items-center min-w-20">
         <Logo className="static" />
       </div>
