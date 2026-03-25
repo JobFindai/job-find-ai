@@ -4,17 +4,17 @@ import Logo from "../Logo";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-20 min-h-screen items-center mt-16    ">
-      <div className="bg-primary h-[50vh] rounded-xl p-6 w-5/6">
-        <div className="bg-white/10 rounded-xl gap-7 shadow-sm backdrop-blur-xl h-full border border-white/50 flex flex-col items-center justify-center text-white p-5">
-          <h2 className="text-4xl font-bold tracking-wider">
+    <div className="flex flex-col gap-20 min-h-screen items-center lg:mt-16 mt-10    ">
+      <div className="bg-primary lg:h-[50vh] rounded-xl lg:p-6 px-3 py-6 w-5/6">
+        <div className="bg-white/10 rounded-xl text-center lg:gap-7 gap-4 shadow-sm backdrop-blur-xl lg:h-full border border-white/50 flex flex-col items-center justify-center text-white lg:p-5 px-3 py-5">
+          <h2 className="lg:text-4xl text-lg font-bold tracking-wider">
             Ready to Transform Your Career?
           </h2>
-          <p className="text-sm w-2/4 text-center">
+          <p className="text-sm lg:w-2/4 ">
             Join thousands of professionals who've discovered their perfect role
             through intelligent job matching. Your next opportunity is waiting.
           </p>
-          <Button className="bg-gray-100 hover:bg-gray-300 text-foreground h-11 text-sm! w-2/12">
+          <Button className="bg-gray-100 hover:bg-gray-300 text-foreground h-11 text-sm! lg:w-2/12">
             Start Here
           </Button>
         </div>
