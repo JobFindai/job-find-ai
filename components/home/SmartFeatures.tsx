@@ -29,17 +29,17 @@ const features = [
 ];
 export default function SmartFeatures() {
   return (
-    <div className="min-h-screen flex flex-col items-center gap-10 mt-10 p-10">
-      <div className="flex flex-col text-center w-3/5 items-center justify-center gap-3">
-        <h3 className="text-4xl font-bold text-black/90">
+    <div className="min-h-screen flex flex-col items-center lg:gap-10 gap-7 lg:mt-10 mt-5 lg:p-10 p-5">
+      <div className="flex flex-col text-center lg:w-3/5 items-center justify-center gap-3">
+        <h3 className="lg:text-4xl text-xl font-bold text-black/90">
           Smart Features for Career Growth
         </h3>
-        <p className="leading-normal text-muted-foreground">
+        <p className="leading-normal text-sm lg:text-base text-muted-foreground">
           Our AI technology revolutionizes how you discover and apply to
           opportunities that match your unique profile and career aspirations
         </p>
       </div>
-      <div className="lg:grid flex flex-col flex-1  w-5/6  grid-cols-3 gap-x-16 gap-y-10 grid-rows-2">
+      <div className="lg:grid flex flex-col flex-1  lg:w-5/6  grid-cols-3 gap-x-16 lg:gap-y-10 gap-y-4 grid-rows-2">
         {features.map((feature) => (
           <SmartFeatureCard key={feature.image} {...feature} />
         ))}

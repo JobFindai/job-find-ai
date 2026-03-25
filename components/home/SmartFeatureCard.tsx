@@ -10,9 +10,9 @@ export default function SmartFeatureCard({
   description: string;
 }) {
   return (
-    <div className="relative lg:h-72">
+    <div className="relative pb-5 lg:pb-0 lg:h-72">
       <div className="absolute inset-0">
-        <div className="h-2/4">
+        <div className="lg:h-2/4 h-3/4">
           <Image
             src="/bg-pattern.png"
             alt="bg-pattern"
