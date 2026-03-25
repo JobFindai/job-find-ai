@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import Fadeup from "../animation/Fadeup";
 import { Slide } from "../animation/Slide";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Hero() {
   return (
@@ -16,7 +17,21 @@ export default function Hero() {
           </Slide>
           <h2 className="lg:text-6xl text-3xl font-bold tracking-wide leading-tight ">
             Your Fast-Track from Job Listings to{" "}
-            <span className="text-primary">Interview Success</span>
+            <div className="text-primary">
+              <Typewriter
+                words={[
+                  "Interview Success",
+                  "Dream Job Offers",
+                  "Career Milestones",
+                ]}
+                loop={0} // 0 = infinite
+                cursor
+                cursorStyle="|"
+                typeSpeed={80}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </div>
           </h2>
           <Fadeup delay={0.3}>
             <p className="lg:text-lg text-sm text-muted-foreground  font-medium">
@@ -25,7 +40,7 @@ export default function Hero() {
             </p>
           </Fadeup>
           <Fadeup delay={0.5}>
-            <Button className="h-12 lg:w-1/6">Join the Waitlist</Button>
+            <Button className="h-12 ">Join the Waitlist</Button>
           </Fadeup>
         </div>
       </div>

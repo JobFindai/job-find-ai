@@ -64,10 +64,7 @@ export default function HowItWorks() {
               direction={item.animation.direction as Direction}
               delay={item.animation.delay}
             >
-              <div
-                key={item.title}
-                className="flex flex-col lg:w-1/6  items-start  lg:items-center lg:text-center lg:gap-3 gap-5"
-              >
+              <div className="flex flex-col   items-start  lg:items-center lg:text-center lg:gap-3 gap-5">
                 <item.icon className="h-1/4" />
                 <h3 className="text-lg h-1/4 leading-tight font-semibold">
                   {item.title}

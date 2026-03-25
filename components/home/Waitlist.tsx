@@ -3,6 +3,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import Fadeup from "../animation/Fadeup";
+import { Slide } from "../animation/Slide";
 
 export default function Waitlist() {
   return (
@@ -27,7 +28,10 @@ export default function Waitlist() {
               className="size-full rounded-tl-xl rounded-bl-xl object-cover"
             />
           </div>
-          <div className="flex flex-col bg-primary/10 rounded-xl lg:rounded-tr-xl py-7 lg:p-0 lg:rounded-bl-none lg:rounded-tl-none lg:rounded-br-xl items-center flex-1 justify-center">
+          <Slide
+            delay={0.2}
+            className="flex flex-col bg-primary/10 rounded-xl lg:rounded-tr-xl py-7 lg:p-0 lg:rounded-bl-none lg:rounded-tl-none lg:rounded-br-xl items-center flex-1 justify-center"
+          >
             <form className="lg:w-3/4 w-5/6 flex flex-col lg:gap-7 gap-6">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="first-name">First name</Label>
@@ -55,7 +59,7 @@ export default function Waitlist() {
               </div>
               <Button className="w-full h-11">Submit</Button>
             </form>
-          </div>
+          </Slide>
         </div>
       </div>
     </Fadeup>

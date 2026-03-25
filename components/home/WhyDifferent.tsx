@@ -1,5 +1,6 @@
 import { Compass, Globe, MessageCircleMore, Target, Zap } from "lucide-react";
 import Fadeup from "../animation/Fadeup";
+import { Slide } from "../animation/Slide";
 
 const points = [
   {
@@ -7,30 +8,46 @@ const points = [
     title: "Career Compass",
     description:
       "See current, achievable roles with a clear timeline and recommended actions",
+    animation: {
+      delay: 0.1,
+    },
   },
   {
     icon: Target,
     title: "Application Excellence",
     description:
       "Track resumes, get status updates, and prep guides for assessments and interviews",
+    animation: {
+      delay: 0.3,
+    },
   },
+
   {
     icon: Zap,
     title: "Real-time Relevance",
     description:
       "Scores matches by fit & visa eligibility so you apply to realistic opportunities.",
+    animation: {
+      delay: 0.5,
+    },
   },
   {
     icon: MessageCircleMore,
     title: "Empowered Coaching",
     description:
       "Actionable micro-steps and resources tailored by role and country.",
+    animation: {
+      delay: 0.7,
+    },
   },
   {
     icon: Globe,
     title: "Scalable Access",
     description:
       "Works everywhere. Global access compared to others limited regions.",
+    animation: {
+      delay: 0.9,
+    },
   },
 ];
 
@@ -49,18 +66,17 @@ export default function WhyDifferent() {
         </div>
         <div className="lg:grid flex flex-col grid-cols-3 gap-y-10 gap-x-20 grid-rows-2 flex-1 lg:w-5/6">
           {points.map((point) => (
-            <div
-              key={point.title}
-              className="flex flex-col gap-2 bg-gray-200 rounded-md p-5"
-            >
-              <div className="flex gap-2 items-center">
-                <div className="text-2xl bg-gray-300 p-1.5 rounded-md">
-                  <point.icon size={17} />
+            <Slide key={point.title} delay={point.animation.delay}>
+              <div className="flex flex-col gap-2 bg-gray-200 rounded-md p-5">
+                <div className="flex gap-2 items-center">
+                  <div className="text-2xl bg-gray-300 p-1.5 rounded-md">
+                    <point.icon size={17} />
+                  </div>
+                  <h4>{point.title}</h4>
                 </div>
-                <h4>{point.title}</h4>
+                <p className="text-sm">{point.description}</p>
               </div>
-              <p className="text-sm">{point.description}</p>
-            </div>
+            </Slide>
           ))}
         </div>
       </div>

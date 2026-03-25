@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Fadeup from "../animation/Fadeup";
+import { Slide } from "../animation/Slide";
 
 export default function AboutUs() {
   return (
@@ -13,7 +14,10 @@ export default function AboutUs() {
           </p>
         </div>
         <div className="flex flex-col-reverse lg:flex-row lg:gap-2 gap-5 flex-1 w-full">
-          <div className="lg:w-4/6 px-5 py-7 lg:p-0  bg-gray-200 rounded-xl grid place-items-center">
+          <Slide
+            delay={0.3}
+            className="lg:w-4/6 px-5 py-7 lg:p-0  bg-gray-200 rounded-xl grid place-items-center"
+          >
             <div className=" lg:w-2/4 h-full leading-normal flex flex-col gap-7 lg:gap-0 justify-evenly items-center">
               <div className="flex flex-col gap-2">
                 <h4 className="lg:text-4xl text-xl font-semibold">
@@ -45,7 +49,7 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
-          </div>
+          </Slide>
           <div className="lg:w-2/6">
             <Image
               src="/about-us.png"

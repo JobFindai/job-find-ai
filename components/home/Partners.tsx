@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Fadeup from "../animation/Fadeup";
+import Marquee from "react-fast-marquee";
 
 const partners = ["meta", "nestle", "goog", "amazon", "microsoft", "coke"];
 export default function Partners() {
@@ -10,17 +11,19 @@ export default function Partners() {
           Job opportunities from over top companies and more
         </h3>
         <div className="flex flex-1  gap-5 justify-evenly items-center">
-          {partners.map((item) => (
-            <div key={item} className="lg:h-10 ">
-              <Image
-                src={`/${item}.png`}
-                alt={item}
-                width={500}
-                height={500}
-                className="object-cover size-full"
-              />
-            </div>
-          ))}
+          <Marquee gradient={false} speed={50}>
+            {partners.map((item) => (
+              <div key={item} className="lg:h-10 mx-5 lg:mx-16 ">
+                <Image
+                  src={`/${item}.png`}
+                  alt={item}
+                  width={500}
+                  height={500}
+                  className="object-cover size-full"
+                />
+              </div>
+            ))}
+          </Marquee>
         </div>
       </div>
     </Fadeup>

@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Fadeup from "../animation/Fadeup";
+import { Slide } from "../animation/Slide";
 
 const faqs = [
   {
@@ -52,19 +53,21 @@ export default function FAQ() {
         <h3 className="lg:text-3xl text-2xl text-center font-semibold">
           Got Questions? We've Got Answers
         </h3>
-        <Accordion
-          type="single"
-          collapsible
-          defaultValue="shipping"
-          className="lg:w-2xl"
-        >
-          {faqs.map((faq) => (
-            <AccordionItem value={faq.question} key={faq.question}>
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <Slide delay={0.2}>
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue="shipping"
+            className="lg:w-2xl"
+          >
+            {faqs.map((faq) => (
+              <AccordionItem value={faq.question} key={faq.question}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Slide>
       </div>
     </Fadeup>
   );

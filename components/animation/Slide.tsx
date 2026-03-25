@@ -1,5 +1,6 @@
 "use client";
 
+import { useIsMobile } from "@/hooks/useMobile";
 import { motion } from "motion/react";
 import React from "react";
 
@@ -37,7 +38,8 @@ export const Slide = ({
   className = "",
   onClick,
 }: SlideProps) => {
-  const offset = getDirectionOffset(direction);
+  const isMobile = useIsMobile();
+  const offset = getDirectionOffset(isMobile ? direction : "up");
 
   return (
     <motion.div

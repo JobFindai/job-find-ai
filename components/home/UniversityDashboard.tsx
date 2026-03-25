@@ -1,5 +1,6 @@
-import { Calendar, GraduationCap, Handshake, Users } from "lucide-react";
+import { Calendar, GraduationCap, Handshake, Slice, Users } from "lucide-react";
 import Fadeup from "../animation/Fadeup";
+import { Slide } from "../animation/Slide";
 
 const features = [
   {
@@ -7,18 +8,27 @@ const features = [
     title: "Campus Integration",
     description:
       "Direct integration with your university career centers and academic systems",
+    animation: {
+      delay: 0.2,
+    },
   },
   {
     icon: Users,
     title: "Ambassador Program",
     description:
       "Student ambassadors to help peer navigate career opportunities",
+    animation: {
+      delay: 0.4,
+    },
   },
   {
     icon: Handshake,
     title: "Employment Partnerships",
     description:
       "Direct partnerships with companies for exclusive opportunities and insights",
+    animation: {
+      delay: 0.6,
+    },
   },
 ];
 export default function UniversityDashboard() {
@@ -38,9 +48,10 @@ export default function UniversityDashboard() {
         </div>
         <div className="flex flex-col lg:flex-row flex-1 gap-10 w-5/6 ">
           {features.map((feature) => (
-            <div
+            <Slide
               key={feature.title}
               className="shadow-xl shadow-gray-400/15 p-5 flex-col flex items-center justify-center gap-2 rounded-lg text-center"
+              delay={feature.animation.delay}
             >
               <div className="bg-main/10 text-main rounded-full lg:size-16 size-14 grid place-items-center">
                 <feature.icon size={27} />
@@ -51,7 +62,7 @@ export default function UniversityDashboard() {
               <p className="text-muted-foreground text-sm">
                 {feature.description}
               </p>
-            </div>
+            </Slide>
           ))}
         </div>
       </div>
