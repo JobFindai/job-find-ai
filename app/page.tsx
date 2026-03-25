@@ -1,5 +1,6 @@
 import AboutUs from "@/components/home/AboutUs";
 import FAQ from "@/components/home/FAQ";
+import Footer from "@/components/home/Footer";
 import Hero from "@/components/home/Hero";
 import HomeNav from "@/components/home/HomeNav";
 import HowItWorks from "@/components/home/HowItWorks";
@@ -22,6 +23,7 @@ export default function page() {
       <AboutUs />
       <Waitlist />
       <FAQ />
+      <Footer />
     </div>
   );
 }

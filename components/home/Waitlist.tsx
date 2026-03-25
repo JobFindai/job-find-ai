@@ -28,22 +28,25 @@ export default function Waitlist() {
         <div className="flex flex-col bg-primary/10 rounded-tr-xl rounded-br-xl items-center flex-1 justify-center">
           <form className="w-3/4 flex flex-col gap-7">
             <div className="flex flex-col gap-3">
-              <Label>First name</Label>
+              <Label htmlFor="first-name">First name</Label>
               <Input
+                id="first-name"
                 className="bg-white border-none shadow-none! placeholder:text-muted-foreground placeholder:text-xs h-11"
                 placeholder="e.g John"
               />
             </div>
             <div className="flex flex-col gap-3">
-              <Label>Last name</Label>
+              <Label htmlFor="last-name">Last name</Label>
               <Input
+                id="last-name"
                 className="bg-white border-none shadow-none! placeholder:text-muted-foreground placeholder:text-xs h-11"
                 placeholder="e.g Doe"
               />
             </div>
             <div className="flex flex-col gap-3">
-              <Label>Email address</Label>
+              <Label htmlFor="email">Email address</Label>
               <Input
+                id="email"
                 className="bg-white border-none shadow-none! placeholder:text-muted-foreground placeholder:text-xs h-11"
                 placeholder="e.g johndoe22@gmail.com"
               />
