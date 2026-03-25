@@ -1,3 +1,4 @@
+"use client";
 import AboutUs from "@/components/home/AboutUs";
 import FAQ from "@/components/home/FAQ";
 import Footer from "@/components/home/Footer";

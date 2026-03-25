@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Fadeup from "../animation/Fadeup";
 
 const faqs = [
   {
@@ -46,23 +47,25 @@ Automations: Smart nudges and Ghostbuster Bot follow-ups keep you moving forward
 
 export default function FAQ() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center lg:gap-10 gap-7 lg:mt-10 mt-5 p-5 flex-col">
-      <h3 className="lg:text-3xl text-2xl text-center font-semibold">
-        Got Questions? We've Got Answers
-      </h3>
-      <Accordion
-        type="single"
-        collapsible
-        defaultValue="shipping"
-        className="lg:w-2xl"
-      >
-        {faqs.map((faq) => (
-          <AccordionItem value={faq.question} key={faq.question}>
-            <AccordionTrigger>{faq.question}</AccordionTrigger>
-            <AccordionContent>{faq.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+    <Fadeup>
+      <div className="min-h-[70vh] flex items-center justify-center lg:gap-10 gap-7 lg:mt-10 mt-5 p-5 flex-col">
+        <h3 className="lg:text-3xl text-2xl text-center font-semibold">
+          Got Questions? We've Got Answers
+        </h3>
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="shipping"
+          className="lg:w-2xl"
+        >
+          {faqs.map((faq) => (
+            <AccordionItem value={faq.question} key={faq.question}>
+              <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionContent>{faq.answer}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </Fadeup>
   );
 }

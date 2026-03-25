@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import React from "react";
 
-type Direction = "left" | "right" | "up" | "down";
+export type Direction = "left" | "right" | "up" | "down";
 
 interface SlideProps {
   children: React.ReactNode;
@@ -44,7 +44,7 @@ export const Slide = ({
       onClick={onClick}
       initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       transition={{
         duration,
         delay,
