@@ -13,7 +13,7 @@ import WhyDifferent from "@/components/home/WhyDifferent";
 
 export default function page() {
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <HomeNav />
       <Hero />
       <Partners />
