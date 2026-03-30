@@ -56,7 +56,7 @@ export default function Onboarding() {
 
     const data = (await res.json()) as { success: string };
 
-    if (data.success) router.push("/");
+    if (data.success) router.push("/dashboard");
   }
 
   useEffect(() => {

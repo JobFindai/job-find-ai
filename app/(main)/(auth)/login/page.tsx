@@ -21,7 +21,7 @@ export default function Login() {
       .authenticateWithRedirect({
         strategy,
         redirectUrl: "/onboarding/sso-callback",
-        redirectUrlComplete: "/",
+        redirectUrlComplete: "/dashboard",
       })
       .then(() => setLoading(false))
       .catch((err) => {
