@@ -2,8 +2,8 @@
 import PreStep from "@/components/auth/onboarding/PreStep";
 import StepFour from "@/components/auth/onboarding/StepFour";
 import StepOne from "@/components/auth/onboarding/StepOne";
-import StepThree from "@/components/auth/onboarding/StepThree";
 import StepTwo from "@/components/auth/onboarding/StepTwo";
+import StepThree from "@/components/auth/onboarding/StepThree";
 import { LevelType, UserType } from "@/types/users";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -40,7 +40,7 @@ export default function Onboarding() {
   async function updateUser() {
     const token = await getToken();
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/`,
       {
         credentials: "include",
         method: "PATCH",
@@ -85,10 +85,7 @@ export default function Onboarding() {
           />
         )}
         {step === 2 && (
-          <StepTwo step={step} goStep={(step) => changeStep(step.toString())} />
-        )}
-        {step === 3 && (
-          <StepThree
+          <StepTwo
             step={step}
             handleChange={(level, label) =>
               setUpdatePayload((prev) => ({
@@ -99,13 +96,19 @@ export default function Onboarding() {
             }
             updatePayload={updatePayload}
             goStep={(step) => changeStep(step.toString())}
+            handleOnboardingComplete={() => updateUser()}
+          />
+        )}
+        {step === 3 && (
+          <StepThree
+            step={step}
+            goStep={(step) => changeStep(step.toString())}
           />
         )}
         {step === 4 && (
           <StepFour
             step={step}
             goStep={(step) => changeStep(step.toString())}
-            handleOnboardingComplete={() => updateUser()}
           />
         )}
       </div>

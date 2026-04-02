@@ -24,6 +24,8 @@ export default function MainLayout({
     },
   });
 
+  console.log(user);
+
   useEffect(() => {
     if (!isLoaded) return;
 

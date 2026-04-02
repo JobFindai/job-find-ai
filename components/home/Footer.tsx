@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Button } from "../ui/button";
 import Logo from "../Logo";
 import Fadeup from "../animation/Fadeup";
@@ -54,8 +54,8 @@ export default function Footer() {
               info@jobfindai.io
             </span>
             <div className="flex gap-2 text-foreground">
-              <Instagram size={20} />
-              <Linkedin size={20} />
+              {/* <Instagram size={20} />
+              <Linkedin size={20} /> */}
             </div>
           </div>
         </Fadeup>

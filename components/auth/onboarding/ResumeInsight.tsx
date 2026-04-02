@@ -38,8 +38,8 @@ export default function ResumeInsight({
         >
           Change resume
         </Button>
-        <Button onClick={() => goStep(3)} className="h-12 lg:w-1/4">
-          Set experience level
+        <Button onClick={() => goStep(step + 1)} className="h-12 lg:w-1/4">
+          Explore Job Matches
         </Button>
       </div>
     </Slide>

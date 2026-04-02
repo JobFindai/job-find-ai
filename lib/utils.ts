@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export async function getUser(token: string | null) {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/users/`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/`,
       {
         credentials: "include",
         method: "GET",

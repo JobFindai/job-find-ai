@@ -1,101 +1,239 @@
 import { Slide } from "@/components/animation/Slide";
-import OnboardHeader from "./OnboardHeader";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { currentLevel, targetLevel } from "@/lib/constants";
-import { LevelType } from "@/types/users";
-import { UpdatePayloadType } from "@/app/(main)/(auth)/onboarding/page";
+import { CloudUpload, Trash } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import ResumeInsight from "./ResumeInsight";
+import OnboardHeader from "./OnboardHeader";
+import { createClient } from "@supabase/supabase-js";
+import { useAuth } from "@clerk/nextjs";
+import Image from "next/image";
+import Loader from "@/components/Loader";
 
-export default function StepThree({
+export default function StepTwo({
   step,
   goStep,
-  handleChange,
-  updatePayload,
 }: {
-  handleChange: (val: LevelType, label: "current" | "target") => void;
   step: number;
   goStep: (step: number) => void;
-  updatePayload: UpdatePayloadType;
 }) {
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [showResumeInsight, setShowResumeInsight] = useState(false);
+  const user = useAuth();
+  const [resumeState, setResumeState] = useState({
+    name: "",
+    size: 0,
+    contentType: "",
+    url: "",
+    path: "",
+  });
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+  );
+
+  // Check if user has uploaded before and retrieve
+  useEffect(() => {
+    async function retrieveResume() {
+      // Get Resume
+      const { data } = await supabase.storage
+        .from("resume")
+        .list(user.userId ?? undefined);
+
+      const resume = data?.at(0);
+
+      // Get Resume Pub Url
+      const { data: url } = supabase.storage
+        .from("resume")
+        .getPublicUrl(`${user.userId}/${resume?.name}`);
+
+      // Set Resume State
+      setResumeState((prev) => ({
+        ...prev,
+        name: resume?.name ?? "",
+        contentType: resume?.metadata?.mimetype ?? "",
+        size: resume?.metadata?.size ? resume.metadata.size / 1000 : 0,
+        url: url.publicUrl ?? "",
+        path: `${user.userId}/${resume?.name}`,
+      }));
+
+      return;
+    }
+
+    retrieveResume();
+  }, [supabase, user]);
+
+  // Handle Resume Upload
+  const onDrop = useCallback(
+    (acceptedFiles: Array<File>) => {
+      try {
+        setLoading(true);
+        setError(null);
+        acceptedFiles.forEach(async (file) => {
+          // Upload file to supabase
+          const { data, error } = await supabase.storage
+            .from("resume")
+            .upload(`${user.userId}/${file.name}`, file);
+
+          if (error) {
+            setError(error);
+            return;
+          }
+          // Get Public url of uploaded file
+          const { data: info } = await supabase.storage
+            .from("resume")
+            .info(data.path);
+
+          const { data: url } = supabase.storage
+            .from("resume")
+            .getPublicUrl(data.path);
+
+          // Set Resume State
+          setResumeState((prev) => ({
+            ...prev,
+            name: info?.name.split("/").at(1) ?? "",
+            contentType: info?.contentType ?? "",
+            size: info?.size ? info.size / 1000 : 0,
+            url: url.publicUrl ?? "",
+            path: data.path,
+          }));
+
+          console.log(info);
+        });
+      } finally {
+        setLoading(false);
+      }
+    },
+    [supabase, user],
+  );
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
-    <Slide
-      direction="right"
-      className=" flex flex-col items-center gap-6 w-full px-4   min-h-96"
-    >
-      <OnboardHeader
-        step={step}
-        title="Select your experience level"
-        description="Tell us where you are and where you want to grow"
-      />
-      <div className=" flex-1 flex flex-col gap-10  w-full lg:w-2/4">
-        <RadioGroup
-          onValueChange={(val) => handleChange(val as LevelType, "current")}
-          defaultValue="ENTRY_LEVEL"
-          value={updatePayload.currentLevel}
-          className="h-2/4 flex flex-col lg:gap-4 gap-5"
+    <>
+      <Loader loading={loading} />
+      {showResumeInsight ? (
+        <ResumeInsight
+          changeResume={() => setShowResumeInsight(false)}
+          step={step}
+          goStep={goStep}
+        />
+      ) : (
+        <Slide
+          direction="right"
+          className=" flex flex-col p-5 gap-10 min-w-2/4 min-h-3/4"
         >
-          <span>Select your current level</span>
-          <div className="grid grid-cols-2 grid-rows-2 gap-4 lg:gap-7">
-            {currentLevel.map((item) => (
-              <div
-                className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
-                key={item.label}
-              >
-                <RadioGroupItem
-                  value={item.value}
-                  id={`current-${item.label}`}
-                />
-                <Label
-                  className="text-black/80 text-base"
-                  htmlFor={`current-${item.label}`}
-                >
-                  {item.label}
-                </Label>
+          <OnboardHeader
+            step={step}
+            title="Upload your cv/resume"
+            description="We will analyze your resume to generate insights and tailored job matches"
+          />
+          {resumeState.name ? (
+            <Slide
+              onClick={() => window.open(resumeState.url, "_blank")}
+              direction="up"
+              className="border-2 rounded-md cursor-pointer min-h-20 text-gray-600 items-center justify-between px-5 flex"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-10">
+                  <Image
+                    src="/pdf-icon.png"
+                    alt="pdf"
+                    width={1000}
+                    height={1000}
+                    className="size-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-base font-semibold">
+                    {resumeState.name}
+                  </span>
+                  <span className="text-xs">
+                    {Math.round(resumeState.size)} KB
+                  </span>
+                </div>
               </div>
-            ))}
-          </div>
-        </RadioGroup>
-        <RadioGroup
-          defaultValue="SENIOR_LEVEL"
-          value={updatePayload.targetLevel}
-          onValueChange={(val) => handleChange(val as LevelType, "target")}
-          className="h-2/4 flex flex-col lg:gap-4 gap-5"
-        >
-          <span>Target level you want to apply for</span>
-          <div className="grid grid-cols-2 grid-rows-2 lg:gap-7 gap-4">
-            {targetLevel.map((item) => (
-              <div
-                className="flex items-center bg-white p-5 gap-2 shadow-lg shadow-gray-300/40 rounded-lg"
-                key={item.value}
+              <Button
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  await supabase.storage
+                    .from("resume")
+                    .remove([resumeState.path]);
+                  setResumeState({
+                    name: "",
+                    size: 0,
+                    contentType: "",
+                    url: "",
+                    path: "",
+                  });
+                }}
+                variant="ghost"
               >
-                <RadioGroupItem
-                  value={item.value}
-                  id={`target-${item.label}`}
-                />
-                <Label
-                  className="text-black/80 text-base"
-                  htmlFor={`target-${item.label}`}
+                <Trash />
+              </Button>
+            </Slide>
+          ) : (
+            <div>
+              <Slide
+                direction="up"
+                className="flex flex-col items-center gap-7"
+              >
+                <div className="flex flex-col gap-4 w-full">
+                  <span>Upload CV/Resume</span>
+                  <div
+                    {...getRootProps()}
+                    className="border shadow-sm shadow-gray-400/20 p-10 rounded-xl text-center cursor-pointer hover:bg-gray-50"
+                  >
+                    <input {...getInputProps()} />
+                    <div className="flex flex-col items-center gap-2 text-gray-500">
+                      <CloudUpload />
+                      {isDragActive ? (
+                        <p>Drop files here...</p>
+                      ) : (
+                        <p>Click or drag file to this area to upload</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-xs text-red-500">
+                      {error?.message}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      Accepted formats: PDF, DOCX, XLSX (max 5MB)
+                    </span>
+                  </div>
+                </div>
+                <span className="text-muted-foreground font-medium">Or</span>
+                <Button
+                  className="bg-cyan-100/50 text-sm! h-11 flex items-center text-gray-600"
+                  variant="secondary"
                 >
-                  {item.label}
-                </Label>
-              </div>
-            ))}
+                  <div className="size-5 bg-blue-500 grid place-items-center rounded-xs">
+                    {/* <Linkedin className="text-white" /> */}
+                  </div>
+                  <span>Import form Linkedin</span>
+                </Button>
+              </Slide>
+            </div>
+          )}
+          <div>
+            <div className="flex gap-2 items-center text-sm justify-between ">
+              <Button
+                onClick={() => goStep(step - 1)}
+                className="flex! text-muted-foreground h-11 w-1/4 items-center"
+                variant="secondary"
+              >
+                Go Back
+              </Button>
+              <Button
+                onClick={() => setShowResumeInsight(true)}
+                className="h-11 lg:w-1/4"
+              >
+                Analyze resume
+              </Button>
+            </div>
           </div>
-        </RadioGroup>
-        <div className="flex justify-between items-center text-sm">
-          <Button
-            onClick={() => goStep(2)}
-            className="text-muted-foreground"
-            variant="ghost"
-          >
-            Go back
-          </Button>
-          <Button onClick={() => goStep(4)} className="h-12 lg:w-1/4">
-            Explore job matches
-          </Button>
-        </div>
-      </div>
-    </Slide>
+        </Slide>
+      )}
+    </>
   );
 }
