@@ -40,7 +40,7 @@ export default function Onboarding() {
   async function updateUser() {
     const token = await getToken();
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/onboarding`,
       {
         credentials: "include",
         method: "PATCH",
