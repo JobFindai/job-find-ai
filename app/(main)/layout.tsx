@@ -24,8 +24,6 @@ export default function MainLayout({
     },
   });
 
-  console.log(user);
-
   useEffect(() => {
     if (!isLoaded) return;
 
@@ -38,8 +36,16 @@ export default function MainLayout({
       return;
     }
 
-    if (user.onboardingStatus === "COMPLETED") {
-      router.push("/");
+    if (
+      user.onboardingStatus === "COMPLETED" &&
+      !user.profile?.resumeParsedAt
+    ) {
+      router.push("/onboarding?step=3");
+    } else if (
+      user.onboardingStatus === "COMPLETED" &&
+      user.profile?.resumeParsedAt
+    ) {
+      router.push("/dashboard");
     } else {
       router.push("/onboarding");
     }

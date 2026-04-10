@@ -1,5 +1,6 @@
 import { signupSchema } from "@/app/(main)/(auth)/signup/page";
-import z from "zod";
+import { User } from "lucide-react";
+import z, { string } from "zod";
 
 export type SignupSchemaType = z.infer<typeof signupSchema>;
 
@@ -17,6 +18,39 @@ export type LevelType =
   | "SENIOR_LEVEL"
   | "LEAD_MANAGER";
 
+export type Profile = {
+  id: number;
+  bio?: string;
+  resumeUrl?: string;
+  location?: string;
+
+  // Parsed resume data
+  skills: string[];
+  experience?: JSON;
+  education?: JSON;
+  certifications?: string[];
+  languages?: string[];
+  yearsOfExperience?: number;
+
+  // Work authorization (critical for F-1/H-1B users)
+  workAuthorization?: string;
+  sponsorshipRequired: boolean;
+
+  // External links
+  linkedinUrl?: string;
+  portfolioUrl?: string;
+  githubUrl?: string;
+
+  // AI-generated summary from resume parsing
+  aiSummary?: string;
+  resumeParsedAt?: Date;
+
+  userId: number;
+
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type User = {
   id: string;
   clerkId: string;
@@ -25,6 +59,7 @@ export type User = {
   lastName: string | null;
   imageUrl: string | null;
   userName: string | null;
+  profile: Profile | null;
   createdAt: string;
   updatedAT: string;
   type: UserType | null;

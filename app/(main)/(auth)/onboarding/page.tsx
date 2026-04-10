@@ -15,6 +15,12 @@ export type UpdatePayloadType = {
   targetLevel: LevelType;
 };
 
+type ApiResponse<T = undefined> = {
+  status: "success" | "error";
+  message: string;
+  data?: T;
+};
+
 export default function Onboarding() {
   const [step, setStep] = useState(0);
   const searchParams = useSearchParams();
@@ -39,6 +45,7 @@ export default function Onboarding() {
 
   async function updateUser() {
     const token = await getToken();
+    console.log(updatePayload);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/onboarding`,
       {
@@ -54,9 +61,7 @@ export default function Onboarding() {
 
     if (!res.ok) throw Error("User was not updated successfully");
 
-    const data = (await res.json()) as { success: string };
-
-    if (data.success) router.push("/dashboard");
+    return (await res.json()) as ApiResponse;
   }
 
   useEffect(() => {
@@ -96,7 +101,19 @@ export default function Onboarding() {
             }
             updatePayload={updatePayload}
             goStep={(step) => changeStep(step.toString())}
-            handleOnboardingComplete={() => updateUser()}
+            handleOnboardingComplete={async () => {
+              try {
+                // Update user onboarding satus
+                const data = await updateUser();
+
+                if (data.status === "success") {
+                  changeStep((step + 1).toString());
+                  return;
+                }
+              } catch (err) {
+                console.log(err);
+              }
+            }}
           />
         )}
         {step === 3 && (
