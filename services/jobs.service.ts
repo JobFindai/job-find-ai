@@ -1,0 +1,3 @@
+const jobsService = {};
+
+export { jobsService };

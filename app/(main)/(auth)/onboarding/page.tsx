@@ -8,17 +8,12 @@ import { LevelType, UserType } from "@/types/users";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { profileService } from "@/services/profile.service";
 
 export type UpdatePayloadType = {
   type: UserType;
   currentLevel: LevelType;
   targetLevel: LevelType;
-};
-
-type ApiResponse<T = undefined> = {
-  status: "success" | "error";
-  message: string;
-  data?: T;
 };
 
 export default function Onboarding() {
@@ -41,27 +36,6 @@ export default function Onboarding() {
 
     // Push to new search params
     router.push(`/onboarding?${params.toString()}`);
-  }
-
-  async function updateUser() {
-    const token = await getToken();
-    console.log(updatePayload);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/profile/onboarding`,
-      {
-        credentials: "include",
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatePayload),
-      },
-    );
-
-    if (!res.ok) throw Error("User was not updated successfully");
-
-    return (await res.json()) as ApiResponse;
   }
 
   useEffect(() => {
@@ -104,7 +78,12 @@ export default function Onboarding() {
             handleOnboardingComplete={async () => {
               try {
                 // Update user onboarding satus
-                const data = await updateUser();
+                const token = await getToken();
+
+                const data = await profileService.updateUser(
+                  token,
+                  updatePayload,
+                );
 
                 if (data.status === "success") {
                   changeStep((step + 1).toString());

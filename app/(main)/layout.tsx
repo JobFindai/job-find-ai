@@ -1,6 +1,6 @@
 "use client";
 import Loader from "@/components/Loader";
-import { getUser } from "@/lib/utils";
+import { profileService } from "@/services/profile.service";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -20,7 +20,7 @@ export default function MainLayout({
     enabled: isLoaded,
     queryFn: async () => {
       const token = await getToken();
-      return await getUser(token);
+      return await profileService.getUser(token);
     },
   });
 

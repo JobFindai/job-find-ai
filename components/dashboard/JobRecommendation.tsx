@@ -14,23 +14,31 @@ import GhostBursterBot from "./GhostBursterBot";
 import SmartNudges from "./SmartNudges";
 import GrowthPath from "./GrowthPath";
 import { useIsMobile } from "@/hooks/useMobile";
+import { Job } from "@/services/dashboard.service";
+import JobRecommendationEmpty from "./JobRecommendationEmpty";
 
-export default function JobRecommendation() {
+export default function JobRecommendation({ jobs }: { jobs?: Job[] }) {
   const isMobile = useIsMobile();
   return (
     <div className=" flex-1 flex flex-col gap-5">
-      <div className=" flex justify-between items-center">
-        <h4 className="font-medium">Recommended for you</h4>
-        <Button variant={isMobile ? "link" : "outline"}>See All</Button>
-      </div>
-      <div className="lg:grid grid-cols-3 flex flex-col grid-rows-[1fr_1.5fr] lg:gap-5 gap-10">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <GhostBursterBot isMobile={isMobile} />
-        <SmartNudges isMobile={isMobile} />
-        <GrowthPath isMobile={isMobile} />
-      </div>
+      {jobs?.length ? (
+        <>
+          <div className=" flex justify-between items-center">
+            <h4 className="font-medium">Recommended for you</h4>
+            <Button variant={isMobile ? "link" : "outline"}>See All</Button>
+          </div>
+          <div className="lg:grid grid-cols-3 flex flex-col grid-rows-[1fr_1.5fr] lg:gap-5 gap-10">
+            <JobCard />
+            <JobCard />
+            <JobCard />
+            <GhostBursterBot isMobile={isMobile} />
+            <SmartNudges isMobile={isMobile} />
+            <GrowthPath isMobile={isMobile} />
+          </div>
+        </>
+      ) : (
+        <JobRecommendationEmpty />
+      )}
     </div>
   );
 }

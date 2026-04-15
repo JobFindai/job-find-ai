@@ -9,6 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Loader from "@/components/Loader";
+import { profileService } from "@/services/profile.service";
 
 export default function StepTwo({
   step,
@@ -28,41 +29,41 @@ export default function StepTwo({
     url: "",
     path: "",
   });
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-  );
+  // const supabase = createClient(
+  //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+  // );
 
   // Check if user has uploaded before and retrieve
-  useEffect(() => {
-    async function retrieveResume() {
-      // Get Resume
-      const { data } = await supabase.storage
-        .from("resume")
-        .list(user.userId ?? undefined);
+  // useEffect(() => {
+  //   async function retrieveResume() {
+  //     // Get Resume
+  //     const { data } = await supabase.storage
+  //       .from("resume")
+  //       .list(user.userId ?? undefined);
 
-      const resume = data?.at(0);
+  //     const resume = data?.at(0);
 
-      // Get Resume Pub Url
-      const { data: url } = supabase.storage
-        .from("resume")
-        .getPublicUrl(`${user.userId}/${resume?.name}`);
+  //     // Get Resume Pub Url
+  //     const { data: url } = supabase.storage
+  //       .from("resume")
+  //       .getPublicUrl(`${user.userId}/${resume?.name}`);
 
-      // Set Resume State
-      setResumeState((prev) => ({
-        ...prev,
-        name: resume?.name ?? "",
-        contentType: resume?.metadata?.mimetype ?? "",
-        size: resume?.metadata?.size ? resume.metadata.size / 1000 : 0,
-        url: url.publicUrl ?? "",
-        path: `${user.userId}/${resume?.name}`,
-      }));
+  //     // Set Resume State
+  //     setResumeState((prev) => ({
+  //       ...prev,
+  //       name: resume?.name ?? "",
+  //       contentType: resume?.metadata?.mimetype ?? "",
+  //       size: resume?.metadata?.size ? resume.metadata.size / 1000 : 0,
+  //       url: url.publicUrl ?? "",
+  //       path: `${user.userId}/${resume?.name}`,
+  //     }));
 
-      return;
-    }
+  //     return;
+  //   }
 
-    retrieveResume();
-  }, [supabase, user]);
+  //   retrieveResume();
+  // }, [supabase, user]);
 
   // Handle Resume Upload
   const onDrop = useCallback(
@@ -70,44 +71,49 @@ export default function StepTwo({
       try {
         setLoading(true);
         setError(null);
+
         acceptedFiles.forEach(async (file) => {
+          const token = await user.getToken();
+          profileService.uploadResume(token, file);
           // Upload file to supabase
-          const { data, error } = await supabase.storage
-            .from("resume")
-            .upload(`${user.userId}/${file.name}`, file);
+          // const { data, error } = await supabase.storage
+          //   .from("resume")
+          //   .upload(`${user.userId}/${file.name}`, file);
 
-          if (error) {
-            setError(error);
-            return;
-          }
-          // Get Public url of uploaded file
-          const { data: info } = await supabase.storage
-            .from("resume")
-            .info(data.path);
+          // if (error) {
+          //   setError(error);
+          //   return;
+          // }
+          // // Get Public url of uploaded file
+          // const { data: info } = await supabase.storage
+          //   .from("resume")
+          //   .info(data.path);
 
-          const { data: url } = supabase.storage
-            .from("resume")
-            .getPublicUrl(data.path);
+          // const { data: url } = supabase.storage
+          //   .from("resume")
+          //   .getPublicUrl(data.path);
 
-          // Set Resume State
-          setResumeState((prev) => ({
-            ...prev,
-            name: info?.name.split("/").at(1) ?? "",
-            contentType: info?.contentType ?? "",
-            size: info?.size ? info.size / 1000 : 0,
-            url: url.publicUrl ?? "",
-            path: data.path,
-          }));
+          // // Set Resume State
+          // setResumeState((prev) => ({
+          //   ...prev,
+          //   name: info?.name.split("/").at(1) ?? "",
+          //   contentType: info?.contentType ?? "",
+          //   size: info?.size ? info.size / 1000 : 0,
+          //   url: url.publicUrl ?? "",
+          //   path: data.path,
+          // }));
 
-          console.log(info);
+          // console.log(info);
         });
       } finally {
         setLoading(false);
       }
     },
-    [supabase, user],
+    [user],
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+  });
   return (
     <>
       <Loader loading={loading} />
@@ -153,19 +159,19 @@ export default function StepTwo({
                 </div>
               </div>
               <Button
-                onClick={async (e) => {
-                  e.stopPropagation();
-                  await supabase.storage
-                    .from("resume")
-                    .remove([resumeState.path]);
-                  setResumeState({
-                    name: "",
-                    size: 0,
-                    contentType: "",
-                    url: "",
-                    path: "",
-                  });
-                }}
+                // onClick={async (e) => {
+                //   e.stopPropagation();
+                //   await supabase.storage
+                //     .from("resume")
+                //     .remove([resumeState.path]);
+                //   setResumeState({
+                //     name: "",
+                //     size: 0,
+                //     contentType: "",
+                //     url: "",
+                //     path: "",
+                //   });
+                // }}
                 variant="ghost"
               >
                 <Trash />
