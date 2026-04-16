@@ -1,5 +1,6 @@
 "use client";
 import Loader from "@/components/Loader";
+import { useUser } from "@/hooks/useUser";
 import { profileService } from "@/services/profile.service";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
@@ -13,16 +14,9 @@ export default function MainLayout({
 }) {
   const router = useRouter();
 
-  const { isSignedIn, getToken, isLoaded } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
 
-  const { data: user, isLoading } = useQuery({
-    queryKey: ["user"],
-    enabled: isLoaded,
-    queryFn: async () => {
-      const token = await getToken();
-      return await profileService.getUser(token);
-    },
-  });
+  const { user, isLoading } = useUser();
 
   useEffect(() => {
     if (!isLoaded) return;

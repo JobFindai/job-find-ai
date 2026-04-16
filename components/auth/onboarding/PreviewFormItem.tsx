@@ -20,9 +20,11 @@ export function PreviewFormItem({
   children: ReactNode;
 }) {
   const [edit, setEdit] = useState(false);
-
   return (
-    <AccordionItem className="shadow-sm  rounded-lg bg-white" value={value}>
+    <AccordionItem
+      className="shadow-sm lg:shadow-xs  rounded-lg bg-white"
+      value={value}
+    >
       <AccordionTrigger
         className={cn(
           "items-center  focus-visible:outline-none gap-2 px-4",

@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { getToken, isLoaded } = useAuth();
+  const { getToken } = useAuth();
 
   // Retrieve Dashboard Data
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Home() {
   const { data: matchedJobs } = useJobMatches();
 
   // Retrieve User Data
-  const user = useUser(isLoaded);
+  const { user } = useUser();
 
   if (!user) {
     router.push("/login");

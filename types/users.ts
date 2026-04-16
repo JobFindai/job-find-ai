@@ -18,6 +18,13 @@ export type LevelType =
   | "SENIOR_LEVEL"
   | "LEAD_MANAGER";
 
+export type Qualification = {
+  degree: string | null;
+  field: string | null;
+  graduationDate: string | null;
+  institution: string | null;
+};
+
 export type Profile = {
   id: number;
   bio?: string;
@@ -27,7 +34,7 @@ export type Profile = {
   // Parsed resume data
   skills: string[];
   experience?: JSON;
-  education?: JSON;
+  education?: Qualification[];
   certifications?: string[];
   languages?: string[];
   yearsOfExperience?: number;

@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useToken } from "./useToken";
 import { profileService } from "@/services/profile.service";
 
-export function useUser(isLoaded?: boolean) {
-  const token = useToken();
+export function useUser() {
+  const { token, isLoaded } = useToken();
 
-  const { data: user } = useQuery({
+  const { data: user, isLoading } = useQuery({
     queryKey: ["user"],
-    enabled: isLoaded ?? true,
-    queryFn: async () => (token ? await profileService.getUser(token) : null),
+    enabled: isLoaded,
+    queryFn: async () => await profileService.getUser(token),
   });
 
-  return user;
+  return { user, isLoading };
 }

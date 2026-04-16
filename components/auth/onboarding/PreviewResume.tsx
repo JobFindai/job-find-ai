@@ -17,8 +17,7 @@ export default function PreviewResume({
   changeResume: () => void;
   goStep: (step: number) => void;
 }) {
-  const user = useUser();
-  const [profile, setProfile] = useState(user?.profile);
+  const { user } = useUser();
   return (
     <Slide
       direction="right"
@@ -27,11 +26,14 @@ export default function PreviewResume({
       <OnboardHeader
         step={step}
         title="Preview Resume"
-        description="  Here's how your resume performs against industry expectations and
-                relevant job roles"
+        description="See how your resume measures up against industry standards and target roles."
       />
-      <ProfileHeader />
-      <PreviewForm />
+      <ProfileHeader
+        name={`${user?.firstName} ${user?.lastName}`}
+        jobTitle={"Full Stack Developer"}
+        imageUrl={user?.imageUrl || ""}
+      />
+      <PreviewForm userProfile={user?.profile} />
       <div className="flex lg:justify-between  justify-around bg-gray-100  fixed bottom-0 min-h-[10vh] items-center text-sm w-full lg:w-3/5">
         <Button
           onClick={() => changeResume()}

@@ -5,8 +5,11 @@ import { Skills } from "./Skills";
 import { Experience } from "./Experience";
 import { Links } from "./Links";
 import { Education } from "./Education";
+import { Profile } from "@/types/users";
+import { useState } from "react";
 
-export function PreviewForm() {
+export function PreviewForm({ userProfile }: { userProfile?: Profile | null }) {
+  const [profile, setProfile] = useState(userProfile);
   return (
     <Accordion
       type="single"
@@ -14,11 +17,17 @@ export function PreviewForm() {
       defaultValue="basic-info"
       className="w-full space-y-5"
     >
-      <BasicInfo value="basic-info" />
-      <AISummary value="ai-summary" />
-      <Skills value="skills" />
+      <BasicInfo value="basic-info" profile={profile} />
+      <AISummary
+        value="ai-summary"
+        aiSummary={profile?.aiSummary || "No AI summary available."}
+      />
+      <Skills value="skills" profile={profile || null} />
       <Experience value="experience" />
-      <Education value="education" />
+      <Education
+        value="education"
+        education={profile?.education?.at(0) || null}
+      />
       <Links value="links" />
     </Accordion>
   );
