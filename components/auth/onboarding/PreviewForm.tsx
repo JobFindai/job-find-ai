@@ -28,7 +28,7 @@ export function PreviewForm({ userProfile }: { userProfile?: Profile | null }) {
         value="education"
         education={profile?.education?.at(0) || null}
       />
-      <Links value="links" />
+      <Links value="links" profile={profile || null} />
     </Accordion>
   );
 }

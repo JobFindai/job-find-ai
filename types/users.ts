@@ -36,7 +36,7 @@ export type Profile = {
   experience?: JSON;
   education?: Qualification[];
   certifications?: string[];
-  languages?: string[];
+  languages: string[];
   yearsOfExperience?: number;
 
   // Work authorization (critical for F-1/H-1B users)

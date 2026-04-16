@@ -32,15 +32,15 @@ export function Skills({
         <div className="flex flex-col gap-3">
           <h4 className="font-semibold text-base">SOFT SKILLS</h4>
           <div className="flex gap-3 flex-wrap">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {profile?.languages.map((skill, index) => (
               <Toggle
                 key={index}
-                aria-label={`Skill React ${index}`}
+                aria-label={`Skill ${skill} ${index}`}
                 size="sm"
                 className="rounded-xl text-xs!"
                 variant="outline"
               >
-                Typescript
+                {skill}
               </Toggle>
             ))}
           </div>
