@@ -11,15 +11,19 @@ import { ReactNode, useState } from "react";
 const hoverEffect = "hover:bg-gray-200 cursor-pointer";
 
 export function PreviewFormItem({
+  edit,
+  handleEdit,
   value,
   title,
   children,
 }: {
+  edit: boolean;
+  handleEdit: (value: boolean) => void;
   value: string;
   title: string;
   children: ReactNode;
 }) {
-  const [edit, setEdit] = useState(false);
+  const [opened, setOpened] = useState(false);
   return (
     <AccordionItem
       className="shadow-sm lg:shadow-xs  rounded-lg bg-white"
@@ -36,8 +40,9 @@ export function PreviewFormItem({
           <span
             role="button"
             onClick={(e) => {
-              edit && e.stopPropagation();
-              setEdit(true);
+              opened && e.stopPropagation();
+              handleEdit(true);
+              setOpened(true);
             }}
             className={cn(
               "min-w-20 border rounded-lg h-10 flex items-center justify-center",
@@ -56,13 +61,13 @@ export function PreviewFormItem({
             className={cn("mt-5 h-12  flex gap-3 text-lg ", !edit && "hidden")}
           >
             <Button
-              onClick={() => setEdit(false)}
+              onClick={() => handleEdit(false)}
               className="h-full lg:w-1/4 w-1/3"
             >
               Save
             </Button>
             <Button
-              onClick={() => setEdit(false)}
+              onClick={() => handleEdit(false)}
               variant="outline"
               className="h-full lg:w-1/4 w-1/3"
             >

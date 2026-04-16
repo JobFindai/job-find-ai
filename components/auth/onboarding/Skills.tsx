@@ -2,6 +2,7 @@ import { Toggle } from "@/components/ui/toggle";
 import { PreviewFormItem } from "./PreviewFormItem";
 import { XIcon } from "lucide-react";
 import { Profile } from "@/types/users";
+import { useEdit } from "@/hooks/useEdit";
 
 export function Skills({
   value,
@@ -10,8 +11,14 @@ export function Skills({
   value: string;
   profile: Profile | null;
 }) {
+  const { edit, handleEdit } = useEdit();
   return (
-    <PreviewFormItem value={value} title="Skills">
+    <PreviewFormItem
+      edit={edit}
+      handleEdit={handleEdit}
+      value={value}
+      title="Skills"
+    >
       <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-3">
           <h4 className="font-semibold text-base">TECHNICAL SKILLS</h4>
@@ -25,6 +32,7 @@ export function Skills({
                 variant="outline"
               >
                 {skill}
+                {edit && <XIcon className="ml-1" />}
               </Toggle>
             ))}
           </div>
@@ -41,6 +49,7 @@ export function Skills({
                 variant="outline"
               >
                 {skill}
+                {edit && <XIcon className="ml-1" />}
               </Toggle>
             ))}
           </div>
