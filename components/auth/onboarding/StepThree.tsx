@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { CloudUpload, Trash } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import ResumeInsight from "./ResumeInsight";
 import OnboardHeader from "./OnboardHeader";
 import { createClient } from "@supabase/supabase-js";
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Loader from "@/components/Loader";
 import { profileService } from "@/services/profile.service";
+import PreviewResume from "./PreviewResume";
 
 export default function StepTwo({
   step,
@@ -118,9 +118,9 @@ export default function StepTwo({
     <>
       <Loader loading={loading} />
       {showResumeInsight ? (
-        <ResumeInsight
-          changeResume={() => setShowResumeInsight(false)}
+        <PreviewResume
           step={step}
+          changeResume={() => setShowResumeInsight(false)}
           goStep={goStep}
         />
       ) : (
@@ -234,7 +234,7 @@ export default function StepTwo({
                 onClick={() => setShowResumeInsight(true)}
                 className="h-11 lg:w-1/4"
               >
-                Analyze resume
+                Preview resume
               </Button>
             </div>
           </div>

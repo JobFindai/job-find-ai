@@ -3,6 +3,9 @@ import JobCard from "./JobCard";
 import OnboardHeader from "./OnboardHeader";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useJobMatches } from "@/hooks/useJobMatches";
+import JobMatchesEmptyState from "./JobMatchesEmptyState";
+import Loader from "@/components/Loader";
 
 export default function StepFour({
   step,
@@ -12,22 +15,32 @@ export default function StepFour({
   goStep: (step: number) => void;
 }) {
   const router = useRouter();
+  const { data: matchedJobs, refetch, isLoading } = useJobMatches();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <Slide
       direction="right"
-      className=" flex flex-col items-center lg:gap-9 gap-5 px-4 pt-16 lg:p-0 min-w-3/5 min-h-96"
+      className=" flex flex-col items-center lg:gap-9  w-full  gap-5  px-4 pt-16 lg:p-0 min-w-3/5 min-h-[80vh]"
     >
       <OnboardHeader
         step={step}
         title="Top Job matches"
         description="Explore top jobs that fit your resume and experience level"
       />
-      <div className=" flex-1 lg:grid grid-cols-2 flex flex-col gap-7 lg:w-3/5 grid-rows-2">
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-      </div>
+      {matchedJobs?.length ? (
+        <div className=" flex-1 lg:grid grid-cols-2 flex flex-col gap-7 lg:w-3/5 grid-rows-2">
+          <JobCard />
+          <JobCard />
+          <JobCard />
+          <JobCard />
+        </div>
+      ) : (
+        <JobMatchesEmptyState refetch={refetch} />
+      )}
       <div className="flex justify-between items-center w-full lg:w-3/5 lg:text-sm">
         <Button
           onClick={() => goStep(3)}

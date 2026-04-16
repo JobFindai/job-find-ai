@@ -8,13 +8,37 @@ type FitscoreProps = {
   score: number; // 0 - 100
 };
 
-export default function Greeting({ stats }: { stats?: DashboardStats }) {
+export default function Greeting({
+  stats,
+  firstName,
+  matchedJobsLength,
+}: {
+  stats?: DashboardStats;
+  firstName: string;
+  matchedJobsLength: number;
+}) {
+  let greeting: string;
+  const hour = new Date().getHours();
+  if (hour < 12) {
+    greeting = "Good Morning";
+  } else if (hour < 17) {
+    greeting = "Good Afternoon";
+  } else if (hour < 21) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Good Night";
+  }
+
   return (
     <div className=" flex flex-col lg:gap-10 gap-5">
       <div className="flex flex-col lg:flex-row  justify-between items-center">
         <div className="flex flex-col gap-2 w-full lg:w-fit">
-          <h3 className="text-xl font-semibold">Good Morning John!</h3>
-          <span>12 new matches align with your profile today.</span>
+          <h3 className="text-xl font-semibold">
+            {greeting} {firstName}!
+          </h3>
+          <span>
+            {matchedJobsLength} new matches align with your profile today.
+          </span>
         </div>
         <div className="lg:flex  gap-5 hidden  flex-1 justify-end">
           <Button

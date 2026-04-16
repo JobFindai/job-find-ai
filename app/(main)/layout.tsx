@@ -45,7 +45,7 @@ export default function MainLayout({
       user.onboardingStatus === "COMPLETED" &&
       user.profile?.resumeParsedAt
     ) {
-      router.push("/dashboard");
+      // router.push("/dashboard");
     } else {
       router.push("/onboarding");
     }
