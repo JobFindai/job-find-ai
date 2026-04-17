@@ -58,7 +58,10 @@ export function PreviewFormItem({
         <div className="px-4 pb-2">
           {children}
           <div
-            className={cn("mt-5 h-12  flex gap-3 text-lg ", !edit && "hidden")}
+            className={cn(
+              "mt-5 h-12  flex gap-3 text-base ",
+              !edit && "hidden",
+            )}
           >
             <Button
               onClick={() => handleEdit(false)}

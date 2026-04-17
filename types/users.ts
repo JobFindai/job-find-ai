@@ -25,15 +25,24 @@ export type Qualification = {
   institution: string | null;
 };
 
+export type ProfessionalExperience = {
+  company: string | null;
+  title: string | null;
+  startDate: string | null;
+  endDate: string | null;
+  description: string | null;
+};
+
 export type Profile = {
   id: number;
   bio?: string;
   resumeUrl?: string;
   location?: string;
+  jobTitle: string;
 
   // Parsed resume data
   skills: string[];
-  experience?: JSON;
+  experience?: ProfessionalExperience[];
   education?: Qualification[];
   certifications?: string[];
   languages: string[];

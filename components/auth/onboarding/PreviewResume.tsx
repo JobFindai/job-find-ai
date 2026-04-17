@@ -12,16 +12,18 @@ export default function PreviewResume({
   step,
   changeResume,
   goStep,
+  resumeUrl,
 }: {
   step: number;
   changeResume: () => void;
   goStep: (step: number) => void;
+  resumeUrl: string;
 }) {
   const { user } = useUser();
   return (
     <Slide
       direction="right"
-      className=" flex flex-col items-center  py-20 min-h-screen  lg:p-0 px-3 lg:gap-6 gap-8  lg:w-2/4"
+      className=" flex flex-col items-center overflow-x-hidden  py-20 min-h-screen  lg:p-0 px-3 lg:gap-6 gap-8  lg:w-2/4"
     >
       <OnboardHeader
         step={step}
@@ -30,10 +32,10 @@ export default function PreviewResume({
       />
       <ProfileHeader
         name={`${user?.firstName} ${user?.lastName}`}
-        jobTitle={"Full Stack Developer"}
+        jobTitle={user?.profile?.jobTitle || "Not set"}
         imageUrl={user?.imageUrl || ""}
       />
-      <PreviewForm userProfile={user?.profile} />
+      <PreviewForm userProfile={{ ...user!.profile!, resumeUrl }} />
       <div className="flex lg:justify-between  justify-around bg-gray-100  fixed bottom-0 min-h-[10vh] items-center text-sm w-full lg:w-3/5">
         <Button
           onClick={() => changeResume()}

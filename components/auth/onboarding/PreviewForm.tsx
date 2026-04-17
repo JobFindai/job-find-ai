@@ -23,7 +23,7 @@ export function PreviewForm({ userProfile }: { userProfile?: Profile | null }) {
         aiSummary={profile?.aiSummary || "No AI summary available."}
       />
       <Skills value="skills" profile={profile || null} />
-      <Experience value="experience" />
+      <Experience value="experience" profile={profile || null} />
       <Education
         value="education"
         education={profile?.education?.at(0) || null}

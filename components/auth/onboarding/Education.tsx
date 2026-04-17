@@ -25,6 +25,7 @@ export function Education({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
+              value={education?.institution || ""}
               placeholder="e.g University of Lagos"
             />
           ) : (
@@ -37,6 +38,7 @@ export function Education({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
+              value={education?.degree || ""}
               placeholder="e.g B.Sc Computer Science"
             />
           ) : (
@@ -49,6 +51,7 @@ export function Education({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
+              value={education?.field || ""}
               placeholder="e.g Computer Science"
             />
           ) : (
@@ -61,6 +64,7 @@ export function Education({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
+              value={education?.graduationDate || ""}
               placeholder="e.g 2026"
             />
           ) : (
