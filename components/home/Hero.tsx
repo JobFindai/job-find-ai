@@ -3,8 +3,10 @@ import { Button } from "../ui/button";
 import Fadeup from "../animation/Fadeup";
 import { Slide } from "../animation/Slide";
 import { Typewriter } from "react-simple-typewriter";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+  const router = useRouter();
   return (
     <Fadeup>
       <div className="lg:h-screen min-h-[65vh] flex items-center justify-center mt-16  lg:mt-0 ">
@@ -40,7 +42,13 @@ export default function Hero() {
             </p>
           </Fadeup>
           <Fadeup delay={0.5}>
-            <Button className="h-12 ">Join the Waitlist</Button>
+            {/* <Button className="h-12 ">Join the Waitlist</Button> */}
+            <Button
+              onClick={() => router.push("/onboarding")}
+              className="h-12 "
+            >
+              Create Account
+            </Button>
           </Fadeup>
         </div>
       </div>
