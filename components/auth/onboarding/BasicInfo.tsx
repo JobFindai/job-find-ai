@@ -9,10 +9,10 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSubProfile } from "@/hooks/useSubProfile";
 
 export function BasicInfo({
   value,
@@ -22,6 +22,14 @@ export function BasicInfo({
   profile: Profile | null;
 }) {
   const { edit, handleEdit } = useEdit();
+  const { subProfile, setSubProfile } = useSubProfile(profile!, [
+    "jobTitle",
+    "yearsOfExperience",
+    "bio",
+    "workAuthorization",
+    "location",
+    "sponsorshipRequired",
+  ]);
 
   return (
     <PreviewFormItem
@@ -37,11 +45,17 @@ export function BasicInfo({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
-              value={profile?.jobTitle}
+              value={subProfile?.jobTitle}
+              onChange={(e) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  jobTitle: e.target.value,
+                }))
+              }
               placeholder="e.g Frontend Developer"
             />
           ) : (
-            <span>{profile?.jobTitle || "Not set"}</span>
+            <span>{subProfile?.jobTitle || "Not set"}</span>
           )}
         </div>
         <div>
@@ -50,23 +64,35 @@ export function BasicInfo({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
-              value={profile?.yearsOfExperience}
+              value={subProfile?.yearsOfExperience}
+              onChange={(e) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  yearsOfExperience: Number(e.target.value),
+                }))
+              }
               placeholder="e.g 3"
             />
           ) : (
-            <span>{profile?.yearsOfExperience || "Not set"}</span>
+            <span>{subProfile?.yearsOfExperience || "Not set"}</span>
           )}
         </div>
         <div className={cn(edit && "col-span-2")}>
           <h4 className="font-semibold mb-1">BIO</h4>
           {edit ? (
             <Textarea
-              value={profile?.bio}
+              value={subProfile?.bio}
+              onChange={(e) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  bio: e.target.value,
+                }))
+              }
               className="h-11 placeholder:text-xs!"
               placeholder="Write a short bio..."
             />
           ) : (
-            <span>{profile?.bio || "Not set"}</span>
+            <span>{subProfile?.bio || "Not set"}</span>
           )}
         </div>
         <div>
@@ -75,11 +101,17 @@ export function BasicInfo({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
-              value={profile?.workAuthorization}
+              value={subProfile?.workAuthorization}
+              onChange={(e) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  workAuthorization: e.target.value,
+                }))
+              }
               placeholder="e.g Nigerian Citizen"
             />
           ) : (
-            <span>{profile?.workAuthorization || "Not set"}</span>
+            <span>{subProfile?.workAuthorization || "Not set"}</span>
           )}
         </div>
         <div>
@@ -88,18 +120,30 @@ export function BasicInfo({
             <Input
               className="h-11 placeholder:text-xs!"
               type="text"
-              value={profile?.location}
+              value={subProfile?.location}
+              onChange={(e) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  location: e.target.value,
+                }))
+              }
               placeholder="e.g Lagos, Nigeria"
             />
           ) : (
-            <span>{profile?.location || "Not set"}</span>
+            <span>{subProfile?.location || "Not set"}</span>
           )}
         </div>
         <div className={cn(edit && "col-span-2")}>
           <h4 className="font-semibold mb-1">SPONSORSHIP REQUIRED</h4>
           {edit ? (
             <Select
-              value={profile?.sponsorshipRequired ? "yes" : "no"}
+              value={subProfile?.sponsorshipRequired ? "yes" : "no"}
+              onValueChange={(value) =>
+                setSubProfile((prev) => ({
+                  ...prev!,
+                  sponsorshipRequired: value === "yes" ? true : false,
+                }))
+              }
               defaultValue="no"
             >
               <SelectTrigger className="w-full h-11!">
@@ -114,7 +158,7 @@ export function BasicInfo({
             </Select>
           ) : (
             <span className="bg-gray-100 rounded-sm border px-2 font-medium">
-              {profile?.sponsorshipRequired ? "Yes" : "No"}
+              {subProfile?.sponsorshipRequired ? "Yes" : "No"}
             </span>
           )}
         </div>

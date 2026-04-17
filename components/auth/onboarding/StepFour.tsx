@@ -41,7 +41,8 @@ export default function StepFour({
       ) : (
         <JobMatchesEmptyState refetch={refetch} />
       )}
-      <div className="flex justify-between items-center w-full lg:w-3/5 lg:text-sm">
+
+      <div className="flex lg:justify-between  justify-around bg-gray-100  fixed bottom-0 min-h-[10vh] items-center text-sm w-full lg:w-3/5">
         <Button
           onClick={() => goStep(3)}
           className="text-muted-foreground"
@@ -52,7 +53,7 @@ export default function StepFour({
         <Button
           variant="link"
           onClick={() => router.push("/dashboard")}
-          className="h-12"
+          className="h-12 lg:w-1/4"
         >
           Skip to dashboard
         </Button>

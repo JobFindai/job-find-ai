@@ -6,7 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 const hoverEffect = "hover:bg-gray-200 cursor-pointer";
 
@@ -23,7 +23,6 @@ export function PreviewFormItem({
   title: string;
   children: ReactNode;
 }) {
-  const [opened, setOpened] = useState(false);
   return (
     <AccordionItem
       className="shadow-sm lg:shadow-xs  rounded-lg bg-white"
@@ -40,9 +39,8 @@ export function PreviewFormItem({
           <span
             role="button"
             onClick={(e) => {
-              opened && e.stopPropagation();
+              e.stopPropagation();
               handleEdit(true);
-              setOpened(true);
             }}
             className={cn(
               "min-w-20 border rounded-lg h-10 flex items-center justify-center",

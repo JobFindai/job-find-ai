@@ -1,15 +1,18 @@
 import { useEdit } from "@/hooks/useEdit";
 import { PreviewFormItem } from "./PreviewFormItem";
 import { Textarea } from "@/components/ui/textarea";
+import { useSubProfile } from "@/hooks/useSubProfile";
+import { Profile } from "@/types/users";
 
 export function AISummary({
   value,
-  aiSummary,
+  profile,
 }: {
   value: string;
-  aiSummary: string;
+  profile: Profile | null;
 }) {
   const { edit, handleEdit } = useEdit();
+  const { subProfile, setSubProfile } = useSubProfile(profile!, ["aiSummary"]);
 
   return (
     <PreviewFormItem
@@ -19,9 +22,17 @@ export function AISummary({
       title="AI Summary"
     >
       {edit ? (
-        <Textarea value={aiSummary} placeholder="Type your message here." />
+        <Textarea
+          value={subProfile?.aiSummary}
+          onChange={(e) =>
+            setSubProfile((prev) => ({ ...prev!, aiSummary: e.target.value }))
+          }
+          placeholder="Type your message here."
+        />
       ) : (
-        <p className="bg-gray-100 rounded-lg p-3 leading-normal">{aiSummary}</p>
+        <p className="bg-gray-100 rounded-lg p-3 leading-normal">
+          {subProfile?.aiSummary || "No AI summary available."}
+        </p>
       )}
     </PreviewFormItem>
   );

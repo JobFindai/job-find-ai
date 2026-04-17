@@ -1,12 +1,10 @@
 import { Slide } from "@/components/animation/Slide";
-import { Progress } from "@/components/ui/progress";
 import { useUser } from "@/hooks/useUser";
-import { useState } from "react";
 import OnboardHeader from "./OnboardHeader";
 import { Button } from "@/components/ui/button";
-
 import { ProfileHeader } from "./ProfileHeader";
 import { PreviewForm } from "./PreviewForm";
+import { ProfileSkeleton } from "./ProfileSkeleton";
 
 export default function PreviewResume({
   step,
@@ -35,7 +33,11 @@ export default function PreviewResume({
         jobTitle={user?.profile?.jobTitle || "Not set"}
         imageUrl={user?.imageUrl || ""}
       />
-      <PreviewForm userProfile={{ ...user!.profile!, resumeUrl }} />
+      {user?.profile ? (
+        <PreviewForm profile={{ ...user!.profile!, resumeUrl }} />
+      ) : (
+        <ProfileSkeleton />
+      )}
       <div className="flex lg:justify-between  justify-around bg-gray-100  fixed bottom-0 min-h-[10vh] items-center text-sm w-full lg:w-3/5">
         <Button
           onClick={() => changeResume()}

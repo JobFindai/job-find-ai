@@ -5,11 +5,9 @@ import { Skills } from "./Skills";
 import { Experience } from "./Experience";
 import { Links } from "./Links";
 import { Profile } from "@/types/users";
-import { useState } from "react";
 import { Education } from "./Education";
 
-export function PreviewForm({ userProfile }: { userProfile?: Profile | null }) {
-  const [profile, setProfile] = useState(userProfile);
+export function PreviewForm({ profile }: { profile?: Profile | null }) {
   return (
     <Accordion
       type="single"
@@ -18,10 +16,7 @@ export function PreviewForm({ userProfile }: { userProfile?: Profile | null }) {
       className="w-full space-y-5"
     >
       <BasicInfo value="basic-info" profile={profile || null} />
-      <AISummary
-        value="ai-summary"
-        aiSummary={profile?.aiSummary || "No AI summary available."}
-      />
+      <AISummary value="ai-summary" profile={profile || null} />
       <Skills value="skills" profile={profile || null} />
       <Experience value="experience" profile={profile || null} />
       <Education

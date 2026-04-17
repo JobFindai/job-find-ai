@@ -4,6 +4,7 @@ import { useEdit } from "@/hooks/useEdit";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useSubProfile } from "@/hooks/useSubProfile";
 
 export function Links({
   value,
@@ -13,6 +14,8 @@ export function Links({
   profile: Profile | null;
 }) {
   const { edit, handleEdit } = useEdit();
+  const { subProfile, setSubProfile } = useSubProfile(profile!, ["experience"]);
+
   return (
     <PreviewFormItem
       edit={edit}
@@ -35,7 +38,13 @@ export function Links({
                 className="h-11"
                 id="linkedin"
                 type="text"
-                value={profile?.linkedinUrl}
+                value={subProfile?.linkedinUrl}
+                onChange={(e) =>
+                  setSubProfile((prev) => ({
+                    ...prev!,
+                    linkedinUrl: e.target.value,
+                  }))
+                }
                 placeholder="https://www.linkedin.com/in/..."
               />
             </>
@@ -45,10 +54,10 @@ export function Links({
               <span
                 className={cn(
                   "text-xs w-3/5 lg:text-base truncate   font-medium text-center",
-                  profile?.linkedinUrl && "text-blue-500",
+                  subProfile?.linkedinUrl && "text-blue-500",
                 )}
               >
-                {profile?.linkedinUrl || "Not set"}
+                {subProfile?.linkedinUrl || "Not set"}
               </span>
             </>
           )}
@@ -68,7 +77,13 @@ export function Links({
                 className="h-11"
                 id="github"
                 type="text"
-                value={profile?.githubUrl}
+                value={subProfile?.githubUrl}
+                onChange={(e) =>
+                  setSubProfile((prev) => ({
+                    ...prev!,
+                    githubUrl: e.target.value,
+                  }))
+                }
                 placeholder="https://www.github.com/..."
               />
             </>
@@ -78,10 +93,10 @@ export function Links({
               <span
                 className={cn(
                   "text-xs w-3/5 lg:text-base truncate   font-medium text-center",
-                  profile?.githubUrl && "text-blue-500",
+                  subProfile?.githubUrl && "text-blue-500",
                 )}
               >
-                {profile?.githubUrl || "Not set"}
+                {subProfile?.githubUrl || "Not set"}
               </span>
             </>
           )}
@@ -100,7 +115,13 @@ export function Links({
               <Input
                 className="h-11"
                 id="portfolio"
-                value={profile?.portfolioUrl}
+                value={subProfile?.portfolioUrl}
+                onChange={(e) =>
+                  setSubProfile((prev) => ({
+                    ...prev!,
+                    portfolioUrl: e.target.value,
+                  }))
+                }
                 type="text"
                 placeholder="https://..."
               />
@@ -111,10 +132,10 @@ export function Links({
               <span
                 className={cn(
                   "text-xs w-3/5 lg:text-base truncate   font-medium text-center",
-                  profile?.portfolioUrl && "text-blue-500",
+                  subProfile?.portfolioUrl && "text-blue-500",
                 )}
               >
-                {profile?.portfolioUrl || "Not set"}
+                {subProfile?.portfolioUrl || "Not set"}
               </span>
             </>
           )}
@@ -133,7 +154,13 @@ export function Links({
               <Input
                 className="h-11"
                 id="resume"
-                value={profile?.resumeUrl}
+                value={subProfile?.resumeUrl}
+                onChange={(e) =>
+                  setSubProfile((prev) => ({
+                    ...prev!,
+                    resumeUrl: e.target.value,
+                  }))
+                }
                 type="text"
                 placeholder="https://..."
               />
@@ -144,10 +171,10 @@ export function Links({
               <span
                 className={cn(
                   "text-xs w-3/5 lg:text-base truncate   font-medium text-center",
-                  profile?.resumeUrl && "text-blue-500",
+                  subProfile?.resumeUrl && "text-blue-500",
                 )}
               >
-                {profile?.resumeUrl || "Not set"}
+                {subProfile?.resumeUrl || "Not set"}
               </span>
             </>
           )}

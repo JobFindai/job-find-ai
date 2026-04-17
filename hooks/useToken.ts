@@ -7,10 +7,11 @@ export function useToken() {
   const queryClient = useQueryClient();
   const [token, setToken] = useState<string | null>(null);
 
-  getToken().then((data) => {
-    setToken(data);
-    queryClient.invalidateQueries({ queryKey: ["user"] });
-  });
+  isLoaded &&
+    getToken().then((data) => {
+      setToken(data);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    });
 
   return { token, isLoaded };
 }
